@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>コミュニティ相関図</title>
+
+<style>
+body {
+  margin: 0;
+  background: #ffffff;
+  font-family: sans-serif;
+}
+
+.container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* コミュニティBOX */
+.group {
+  position: absolute;
+  width: 300px;
+  height: 220px;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.group h3 {
+  margin: 0 0 5px;
+  font-size: 14px;
+}
+
+/* 色分け */
+.group1 { background: #9b7e09; }
+.group2 { background: #4e77ad; }
+.group3 { background: #5c505e; }
+
+/* 人物 */
+.person {
+  position: absolute;
+  width: 80px;
+  padding: 5px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.person img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/* 中央 */
+.me {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  width: 100px;
+  background: #fde68a;
+  border: 2px solid #f59e0b;
+  font-weight: bold;
+}
+
+/* 線 */
+svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+line {
+  stroke: #999;
+  stroke-width: 2;
+}
+
+line.active {
+  stroke: #2563eb;
+  stroke-width: 3;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <svg id="lines"></svg>
+
+  <!-- コミュニティ1 -->
+  <div class="group group1" style="top: 5%; left: 5%;">
+    <h3>幼稚園</h3>
+
+    <div class="person" id="a" style="top:40px; left:20px;">
+      <img src="https://i.pravatar.cc/100?img=1">
+      <div>綱島さん</div>
+    </div>
+  </div>
+
+  <!-- コミュニティ2 -->
+  <div class="group group2" style="top: 5%; right: 5%;">
+    <h3>小学校</h3>
+
+    <div class="person" id="b" style="top:40px; left:40px;">
+      <img src="https://i.pravatar.cc/100?img=3">
+      <div>河野さん</div>
+    </div>
+    <div class="person" id="c" style="top:40px; left:40px;">
+      <img src="https://i.pravatar.cc/100?img=3">
+      <div>塩野さん</div>
+    </div>
+
+    <div class="person" id="d" style="top:120px; left:160px;">
+      <img src="https://i.pravatar.cc/100?img=4">
+      <div>直井さん</div>
+    </div>
+  </div>
+
+  <!-- コミュニティ3 -->
+  <div class="group group3" style="bottom: 5%; left: 30%;">
+    <h3>高校</h3>
+
+    <div class="person" id="e" style="top:60px; left:60px;">
+      <img src="https://i.pravatar.cc/100?img=5">
+      <div>佐々木さん</div>
+    </div>
+        <div class="person" id="e" style="top:60px; left:60px;">
+      <img src="https://i.pravatar.cc/100?img=5">
+      <div>児玉さん</div>
+    </div>
+        <div class="person" id="e" style="top:60px; left:60px;">
+      <img src="https://i.pravatar.cc/100?img=5">
+      <div>綱島さん</div>
+    </div>
+  </div>
+
+
+    <!-- コミュニティ4 -->
+  <div class="group group3" style="bottom: 5%; left: 30%;">
+    <h3>大学</h3>
+
+    <div class="person" id="e" style="top:60px; left:60px;">
+      <img src="https://i.pravatar.cc/100?img=5">
+      <div>岡本さん</div>
+    </div>
+        <!-- <div class="person" id="e" style="top:60px; left:60px;">
+      <img src="https://i.pravatar.cc/100?img=5">
+      <div>児玉さん</div>
+    </div>
+        <div class="person" id="e" style="top:60px; left:60px;">
+      <img src="https://i.pravatar.cc/100?img=5">
+      <div>綱島さん</div> -->
+    <!-- </div> -->
+  </div>
+
+
+    <!-- 社会人 -->
+  <div class="group group3" style="bottom: 5%; left: 30%;">
+    <h3>会社</h3>
+
+該当者なし
+  </div>
+
+  <!-- 自分 -->
+  <div class="person me" id="me">
+    <img src="https://i.pravatar.cc/100?img=10">
+    <div>自分</div>
+  </div>
+
+</div>
+
+<script>
+const relations = [
+  ["me","a"], ["me","c"], ["me","e"],
+  ["a","b"],
+  ["c","d"],
+  ["b","c"],  // コミュニティ跨ぎ
+  ["d","e"]   // コミュニティ跨ぎ
+];
+
+const svg = document.getElementById("lines");
+
+function drawLines() {
+  svg.innerHTML = "";
+
+  relations.forEach(([from, to]) => {
+    const el1 = document.getElementById(from);
+    const el2 = document.getElementById(to);
+
+    const r1 = el1.getBoundingClientRect();
+    const r2 = el2.getBoundingClientRect();
+
+    const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+
+    line.setAttribute("x1", r1.left + r1.width / 2);
+    line.setAttribute("y1", r1.top + r1.height / 2);
+    line.setAttribute("x2", r2.left + r2.width / 2);
+    line.setAttribute("y2", r2.top + r2.height / 2);
+
+    line.dataset.from = from;
+    line.dataset.to = to;
+
+    svg.appendChild(line);
+  });
+}
+
+/* ホバー強調 */
+document.querySelectorAll(".person").forEach(p => {
+  p.addEventListener("mouseenter", () => {
+    const id = p.id;
+    document.querySelectorAll("line").forEach(line => {
+      if (line.dataset.from === id || line.dataset.to === id) {
+        line.classList.add("active");
+      }
+    });
+  });
+
+  p.addEventListener("mouseleave", () => {
+    document.querySelectorAll("line").forEach(line => {
+      line.classList.remove("active");
+    });
+  });
+});
+
+window.addEventListener("load", drawLines);
+window.addEventListener("resize", drawLines);
+</script>
+
+</body>
+</html>

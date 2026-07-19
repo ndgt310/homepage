@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>mayamekarin</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0px;
+      font-family: "MyFont", monospace;
+      background: #ffffff;
+      color: #32322e;
+      line-height: 1.8;
+        font-family: "MyFont", monospace;
+    }
+header {
+  margin: 0;
+  padding: 0px;
+  background: #222;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+    /* .page {
+      max-width: 760px;
+      margin: 0 auto;
+      border: 1px solid #999;
+      padding: 24px;
+      background: #fff;
+    } */
+
+    h1 {
+      text-align: center;
+    }
+
+    .menu {
+      text-align: center;
+      margin: 0px 0;
+      padding: 12px;
+      border-top: 1px solid #999;
+      border-bottom: 1px solid #999;
+    }
+
+    /* .menu a {
+      color: blue;
+      margin: 0 10px;
+    } */
+
+/* ===== メニュー ===== */
+/* .menu {
+  text-align: center;
+  margin: 50px 0;
+} */
+
+.menu a {
+  color: rgb(2, 16, 11);
+  margin: 0 20px;
+  text-decoration: none;
+  position: relative;
+}
+
+/* 下線アニメーション */
+.menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0%;
+  height: 3px;
+  background: rgba(2, 7, 23, 0.701);
+  transition: 0.3s;
+}
+
+.menu a:hover::after {
+  width: 100%;
+}
+
+    .box {
+      margin-top: 24px;
+      padding: 16px;
+      border: 1px solid #999;
+    }
+
+    .blink {
+  animation: blink 1s infinite;
+  text-align: center;
+  color: #2a4f8f;
+}
+@keyframes moveBg {
+  0% { transform: translate(0,0); }
+  50% { transform: translate(-20%, -20%); }
+  100% { transform: translate(0,0); }
+}
+/* ===== キラ粒（暖色） ===== */
+.particle {
+  position: fixed;
+  width: 5px;
+  height: 5px;
+  background: #000000;
+  animation: float 12s infinite;
+  opacity: 0.7;
+}
+@keyframes float {
+  0% { transform: translateY(100vh); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-10vh); opacity: 0; }
+}
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+
+@font-face {
+  font-family: "MyFont";   /* 好きな名前でOK */
+  src: url("x12y16pxMaruMonica.ttf");  /* ファイル指定 */
+}
+
+  </style>
+</head>
+<body>
+    <div class="bg"></div>
+<div class="particle" style="left:15%; animation-delay:0s;"></div>
+<div class="particle" style="left:35%; animation-delay:2s;"></div>
+<div class="particle" style="left:55%; animation-delay:4s;"></div>
+<div class="particle" style="left:75%; animation-delay:1s;"></div>
+<div class="particle" style="left:90%; animation-delay:3s;"></div>
+
+  <!-- <div class="page"> -->
+    <header>
+    <h1>mayamekarin</h1>
+</header>
+    <div class="menu">
+      <!-- 別ページへリンク -->
+       <A href="index.html">ホーム</A>
+      <a href="profile.html">自己紹介</a>
+      <a href="bio.html">バイオグラフィー</a>
+      <!-- <a href="book.html">本</a> -->
+      <!-- <a href="movie.html">映画</a>     -->
+      <a href="gallery.html">ギャラリー</a>      
+      <a href="board.php">掲示板</a>
+     <a href="credit.html">クレジット</a>
+      <a href="sample3.html">サンプル</a>   
+      <a href="sample4.html">サンプル</a>    
+      <a href="sample5.html">サンプル</a>        
+      <a href="sample6.html">サンプル</a>       
+      <!-- <a href="#favorite">遍歴</a> -->
+      <!-- <a href="#contact">連絡</a> -->
+    </div>
+
+<!-- <body> -->
+  <div class="page">
+    <h1>詳しい自己紹介</h1>
+    <h3>（このページはまだ工事中です。）</h3>
+
+    <div class="profile">
+      <div>
+        <p>
+  
+        </p>
+      </div>
+    </div>
+
+    <ul>
+      <li>趣味：映画、読書、ポケモンカード、麻雀、昆虫標本作り、美術館・博物館・水族館巡り、公民館のイベント参加、スパイスカレー、ピアノ、油絵</li>
+      <li>特技：ピカソの本名をすべて言える、アラビア語で50音書ける</li>
+      <li>自慢：ツムツムで一億点を出したことがある</li>
+      <li>座右の銘：満足した豚より不満足なソクラテス</li>
+      <li>好きな食べ物：カニクリームコロッケ、エビ炒飯、高野豆腐</li>
+      <li>好きなおつまみ：貝ひも</li>
+      <li>好きな偉人：ファーブル</li>     
+      <li>好きな歴史上の人物：白鳥由栄</li>     
+      <li>好きな芸能人：ロバート秋山</li> 
+      <li>好きな芸人：真空ジェシカ、ななまがり</li>
+      <li>好きなアイドル：乃木坂46、櫻坂46、日向坂46、わーすた</li>
+      <li>好きなアーティスト：神聖かまってちゃん、相対性理論、ASIAN KUNG-FU GENERATION</li> 
+      <li>好きな曲：フロントメモリー</li> 
+      <li>好きなボカロP：ピノキオピー</li> 
+      <li>好きなゲーム：塊魂</li> 
+      <li>好きな動物：獏</li> 
+      <li>好きな猫の種類：ボンベイ</li> 
+      <li>好きな犬の種類：ボルゾイ</li> 
+      <li>好きな海の生き物：オウムガイ</li> 
+      <li>好きな虫：ヨナグニサン</li> 
+      <li>好きな映画（洋画）：E.T.</li>
+      <li>好きな映画（邦画）：パーフェクトブルー</li>
+      <li>好きな映画監督：ヤン・シュヴァンクマイエル</li>               
+      <li>好きなアニメ：涼宮ハルヒの憂鬱、ゴールデンカムイ、エルフェンリート</li>    
+      <li>好きなアニソン：ハレ晴レユカイ</li>           
+      <li>好きな漫画：左ききのエレン、なるたる</li>               
+      <li>好きな小説：夏への扉</li>    
+      <li>好きな作家：綿矢りさ</li>
+      <li>好きな美術館：富士美術館</li>
+      <li>好きな画家：カンディンスキー</li>
+      <li>好きな映画館：横浜シネマリン</li>
+      <li>好きな言葉：予定調和</li>
+      <li>好きな四字熟語：明鏡止水</li>
+      <li>好きなお酒：ジン</li>
+      <li>好きなポケモン：コイキング</li>
+    <li></li>
+    <li></li>
+
+    </ul>
+  </div>
+</body>
+</html>

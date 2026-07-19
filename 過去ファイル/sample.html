@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>My Profile</title>
+<style>
+body {
+  font-family: sans-serif;
+  margin: 0;
+  background: #f5f5f5;
+}
+
+header {
+  background: #222;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  background: #333;
+}
+
+.tabs label {
+  padding: 15px 20px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.tabs label:hover {
+  background: #555;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+.content {
+  display: none;
+  padding: 30px;
+  animation: fade 0.5s;
+}
+
+@keyframes fade {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+/* タブ切り替え */
+#tab1:checked ~ #content1,
+#tab2:checked ~ #content2,
+#tab3:checked ~ #content3 {
+  display: block;
+}
+
+/* アコーディオン */
+.accordion {
+  margin: 10px 0;
+}
+
+.accordion input {
+  display: none;
+}
+
+.accordion label {
+  display: block;
+  background: #444;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.accordion div {
+  max-height: 0;
+  overflow: hidden;
+  background: #eee;
+  transition: 0.4s;
+  padding: 0 10px;
+}
+
+.accordion input:checked + label + div {
+  max-height: 200px;
+  padding: 10px;
+}
+
+/* フォーム */
+form {
+  max-width: 400px;
+}
+
+input, textarea {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+}
+
+button {
+  background: #222;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #555;
+}
+
+/* モーダル */
+.modal {
+  display: none;
+}
+
+.modal-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 30px;
+  border: 2px solid #333;
+}
+
+.modal-toggle:checked + .modal {
+  display: block;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>My Website</h1>
+</header>
+
+<!-- タブ -->
+<input type="radio" name="tab" id="tab1" checked>
+<input type="radio" name="tab" id="tab2">
+<input type="radio" name="tab" id="tab3">
+
+<div class="tabs">
+  <label for="tab1">自己紹介</label>
+  <label for="tab2">略歴</label>
+  <label for="tab3">お問い合わせ</label>
+</div>
+
+<!-- コンテンツ -->
+<div id="content1" class="content">
+  <h2>自己紹介</h2>
+  <p>こんにちは！Web制作が好きです。</p>
+
+  <div class="accordion">
+    <input type="checkbox" id="acc1">
+    <label for="acc1">好きなこと</label>
+    <div>音楽・読書・カフェ巡り</div>
+  </div>
+
+  <div class="accordion">
+    <input type="checkbox" id="acc2">
+    <label for="acc2">スキル</label>
+    <div>HTML / CSS / デザイン</div>
+  </div>
+</div>
+
+<div id="content2" class="content">
+  <h2>略歴</h2>
+  <ul>
+    <li>2020年：大学入学</li>
+    <li>2022年：Web制作開始</li>
+    <li>2024年：ポートフォリオ制作</li>
+  </ul>
+</div>
+
+<div id="content3" class="content">
+  <h2>お問い合わせ</h2>
+  <form>
+    <input type="text" placeholder="名前">
+    <input type="email" placeholder="メール">
+    <textarea placeholder="内容"></textarea>
+    <button type="button">送信</button>
+  </form>
+
+  <!-- モーダル -->
+  <input type="checkbox" id="modal-toggle" class="modal-toggle">
+  <label for="modal-toggle" style="cursor:pointer;">確認画面</label>
+
+  <div class="modal">
+    <div class="modal-content">
+      <p>送信内容を確認してください</p>
+      <label for="modal-toggle">閉じる</label>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,286 @@
+<?php
+session_start();
+
+if(!isset($_SESSION['login'])){
+    header("Location: login.php");
+    exit;
+}
+?>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>kametama.com</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 24px;
+      font-family: "MyFont", monospace;
+      background: #ffffff;
+      color: #32322e;
+      line-height: 1.8;
+        font-family: "MyFont", monospace;
+    }
+
+    /* .page {
+      max-width: 760px;
+      margin: 0 auto;
+      border: 1px solid #999;
+      padding: 24px;
+      background: #fff;
+    } */
+
+    h1 {
+      text-align: center;
+    }
+
+    .menu {
+      text-align: center;
+      margin: 24px 0;
+      padding: 12px;
+      border-top: 1px solid #999;
+      border-bottom: 1px solid #999;
+    }
+
+    /* .menu a {
+      color: blue;
+      margin: 0 10px;
+    } */
+
+/* ===== メニュー ===== */
+/* .menu {
+  text-align: center;
+  margin: 50px 0;
+} */
+
+.menu a {
+  color: rgb(2, 16, 11);
+  margin: 0 20px;
+  text-decoration: none;
+  position: relative;
+}
+
+/* 下線アニメーション */
+.menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0%;
+  height: 3px;
+  background: rgb(45, 106, 106);
+  transition: 0.3s;
+}
+
+.menu a:hover::after {
+  width: 100%;
+}
+
+    .box {
+      margin-top: 24px;
+      padding: 16px;
+      border: 1px solid #999;
+    }
+
+    .blink {
+  animation: blink 1s infinite;
+  text-align: center;
+  color: #2a4f8f;
+}
+@keyframes moveBg {
+  0% { transform: translate(0,0); }
+  50% { transform: translate(-20%, -20%); }
+  100% { transform: translate(0,0); }
+}
+/* ===== キラ粒（暖色） ===== */
+/* .particle {
+  position: fixed;
+  width: 5px;
+  height: 5px;
+  background: #000000;
+  animation: float 12s infinite;
+  opacity: 0.7;
+}
+@keyframes float {
+  0% { transform: translateY(100vh); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-10vh); opacity: 0; }
+}
+@keyframes blink {
+  50% { opacity: 0; }
+} */
+
+
+@font-face {
+  font-family: "MyFont";   /* 好きな名前でOK */
+  src: url("x12y16pxMaruMonica.ttf");  /* ファイル指定 */
+}
+
+  </style>
+</head>
+<body>
+    <div class="bg"></div>
+<div class="particle" style="left:15%; animation-delay:0s;"></div>
+<div class="particle" style="left:35%; animation-delay:2s;"></div>
+<div class="particle" style="left:55%; animation-delay:4s;"></div>
+<div class="particle" style="left:75%; animation-delay:1s;"></div>
+<div class="particle" style="left:90%; animation-delay:3s;"></div>
+
+
+    <!-- <div class="menu">
+      別ページへリンク
+       <A href="index.html">ホーム</A>
+      <a href="profile.html">自己紹介</a>
+      <a href="people.html">人生史</a>
+      <a href="book.html">本</a>
+      <a href="movie.html">映画</a>    
+      <a href="garelly.html">ギャラリー</a>      
+      <a href="sample.html">サンプル</a>
+     <a href="sample2.html">サンプル</a>
+      <a href="sample3.html">サンプル</a>   
+      
+      <a href="sample4.html">サンプル</a>    
+            <a href="sample5.html">サンプル</a>        
+                  <a href="sample6.html">サンプル</a>       
+
+    </div>
+  </style>
+</head> -->
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>自己紹介</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 24px;
+      font-family: "MyFont", monospace;
+      background: #516687;
+          background-image: url("back.jpg");
+    background-size: cover;      /* 画面いっぱいに拡大 */
+    background-repeat: no-repeat; 
+    }
+
+    /* .page {
+      max-width: 760px;
+      margin: 0 auto;
+      border: 1px solid #999;
+      padding: 24px;
+      background: #fff;
+    } */
+
+    .profile {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    img {
+      width: 250px;
+        height: auto; 
+      border: 1px solid #999;
+    }
+/* 
+    a {
+      color: blue;
+    } */
+
+    .btn {
+  display: inline-block;      /* ←これ超重要 */
+  padding:4px 10px;
+  font-size: 10px;  
+  background: #3c4558;
+  color: white;
+  text-decoration: none;      /* 下線消す */
+  border-radius: 3px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #1a1d26;
+}
+    .button-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #425784;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.button-link:hover {
+  background: #090d1b;
+}
+
+    @font-face {
+  font-family: "MyFont";   /* 好きな名前でOK */
+  src: url("x12y16pxMaruMonica.ttf");  /* ファイル指定 */
+}
+
+/* =========================
+   タブ
+========================= */
+input[type="radio"] {
+  display: none;
+}
+
+nav {
+  /* text-align: center; */
+  margin: 20px 0;
+}
+
+nav label {
+  margin: 0 10px;
+  padding: 6px 12px;
+  background: #4a4847;
+  /* border: 1px solid #020c07; */
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>自己紹介</h1>
+
+    <div class="profile">
+      <img src="me.jpg" alt="プロフィール画像">
+
+      <div>
+        <p>
+          亀山珠緒<br>
+          カメヤマタマオ<br>
+          生年月日　２００３年０２月２３日<br>
+          出身　　　香川県<br>
+          身長　　　１６０．２cm<br>
+
+          
+        </p>
+      </div>
+    </div>
+
+
+    <ul>
+      <h1><nav><a href= "detail.html"class="btn">もっと詳しく</label></a></h1></nav>
+    <!-- <h2><a href= "detail.html">　もっと詳しく</a></h2> -->
+    <p>
+      <h1><a href="index.php">戻る</a></h1>
+    </p><br>
+      <p style = "text-align: right;">※2014/08/02撮影 </p>
+
+  </div>
+
+</body>
+</html>

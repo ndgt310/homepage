@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>生き物と振り返る人生史</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: sans-serif;
+  display: flex;
+  background: #f2f4ef;
+  color: #330606;
+}
+
+/* 年表 */
+.timeline {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 120px;
+  height: 100vh;
+  background: #000;
+  border-right: 1px solid #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.timeline ul {
+  list-style: none;
+  padding: 0;
+}
+
+.timeline li {
+  margin: 20px 0;
+  opacity: 0.4;
+  transition: 0.3s;
+}
+
+.timeline li.active {
+  opacity: 1;
+  color: #00ffd5;
+  font-weight: bold;
+}
+
+/* コンテンツ */
+.content {
+  margin-left: 140px;
+  width: calc(100% - 140px);
+}
+
+.section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* レイアウト */
+.inner {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  max-width: 1000px;
+}
+
+/* 偶数は反転 */
+.section:nth-child(even) .inner {
+  flex-direction: row-reverse;
+}
+
+/* 画像 */
+.image-box {
+  opacity: 0;
+  transform: translateY(80px);
+  transition: 1s;
+}
+
+.image-box.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+img {
+  width: 400px;
+  border-radius: 10px;
+}
+
+/* テキスト */
+.text {
+  max-width: 400px;
+  opacity: 0;
+  transform: translateY(80px);
+  transition: 1s;
+}
+
+.text.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.text h2 {
+  margin: 0 0 10px;
+  font-size: 24px;
+}
+
+.text p {
+  line-height: 1.6;
+  color: #ccc;
+}
+</style>
+
+</head>
+<body>
+
+<!-- 年表 -->
+<div class="timeline">
+  <ul>
+    <li>2018</li>
+    <li>2019</li>
+    <li>2020</li>
+    <li>2021</li>
+    <li>2022</li>
+  </ul>
+</div>
+
+<div class="content">
+
+  <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="https://picsum.photos/id/1015/600/400">
+      </div>
+      <div class="text">
+        <h2>2018 - 始まり</h2>
+        <p>この年は新しい挑戦のスタート。小さな一歩が未来を大きく変えていきます。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="https://picsum.photos/id/1016/600/400">
+      </div>
+      <div class="text">
+        <h2>2019 - 成長</h2>
+        <p>少しずつ形になり、経験が積み重なっていく重要な時期でした。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="https://picsum.photos/id/1018/600/400">
+      </div>
+      <div class="text">
+        <h2>2020 - 転機</h2>
+        <p>予想外の出来事が起こり、大きな方向転換を迫られました。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="https://picsum.photos/id/1020/600/400">
+      </div>
+      <div class="text">
+        <h2>2021 - 再構築</h2>
+        <p>新しい環境に適応しながら、再び基盤を築いていきました。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="https://picsum.photos/id/1024/600/400">
+      </div>
+      <div class="text">
+        <h2>2022 - 飛躍</h2>
+        <p>これまでの努力が実を結び、大きな成果へとつながりました。</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const sections = document.querySelectorAll('.section');
+const timelineItems = document.querySelectorAll('.timeline li');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+
+      const img = entry.target.querySelector('.image-box');
+      const text = entry.target.querySelector('.text');
+
+      img.classList.add('show');
+      text.classList.add('show');
+
+      const index = [...sections].indexOf(entry.target);
+
+      timelineItems.forEach(li => li.classList.remove('active'));
+      if (timelineItems[index]) {
+        timelineItems[index].classList.add('active');
+      }
+    }
+  });
+}, { threshold: 0.5 });
+
+sections.forEach(section => observer.observe(section));
+</script>
+     <h2> <a href="garelly.html">← ギャラリーへ戻る</a><br>
+            <a href="index.html">← トップページに戻る</a></h2>
+
+
+</body>
+</html>

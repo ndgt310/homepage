@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Horizontal Scroll Timeline Gallery</title>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: "Segoe UI", sans-serif;
+    background: linear-gradient(135deg, #e8f0ff, #ffffff);
+    overflow-x: hidden;
+  }
+
+  /* 横スクロール全体 */
+  .scroll-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 60px 40px;
+    gap: 60px;
+    height: 100vh;
+    align-items: center;
+  }
+
+  /* スクロールバー非表示 */
+  .scroll-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* タイムライン軸（左固定） */
+  .timeline-axis {
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 26px;
+    font-weight: bold;
+    color: #2a4dff;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    opacity: 0.7;
+  }
+
+  /* カード */
+  .card {
+    min-width: 380px;
+    scroll-snap-align: center;
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    transform: scale(0.7) rotate(8deg);
+    opacity: 0;
+    transition: all 1s cubic-bezier(.25,.8,.25,1);
+  }
+
+  .card.visible {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+
+  .card img {
+    width: 100%;
+    border-radius: 14px;
+    margin-bottom: 12px;
+  }
+
+  .year {
+    font-size: 20px;
+    font-weight: bold;
+    color: #2a4dff;
+    margin-bottom: 6px;
+  }
+
+  .title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
+
+  .text {
+    font-size: 14px;
+    color: #444;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="timeline-axis">TIMELINE</div>
+
+<div class="scroll-container">
+
+  <div class="card">
+    <div class="year">2018</div>
+    <img src="images/photo1.jpg">
+    <div class="title">はじまりの景色</div>
+    <div class="text">ここからすべてが始まった一枚。</div>
+  </div>
+
+  <div class="card">
+    <div class="year">2019</div>
+    <img src="images/photo2.jpg">
+    <div class="title">新しい街へ</div>
+    <div class="text">見慣れない景色に胸が高鳴った年。</div>
+  </div>
+
+  <div class="card">
+    <div class="year">2020</div>
+    <img src="images/photo3.jpg">
+    <div class="title">静かな時間</div>
+    <div class="text">世界が止まったような日々の記録。</div>
+  </div>
+
+  <div class="card">
+    <div class="year">2021</div>
+    <img src="images/photo4.jpg">
+    <div class="title">再スタート</div>
+    <div class="text">少しずつ動き出した日常。</div>
+  </div>
+
+  <div class="card">
+    <div class="year">2022</div>
+    <img src="images/photo5.jpg">
+    <div class="title">出会いと発見</div>
+    <div class="text">たくさんの「はじめまして」があった年。</div>
+  </div>
+
+  <div class="card">
+    <div class="year">2023</div>
+    <img src="images/photo6.jpg">
+    <div class="title">未来へ</div>
+    <div class="text">まだ見ぬ景色へ向かう一歩。</div>
+  </div>
+
+</div>
+
+<script>
+  // 横スクロールでカードを派手にフェードイン
+  const cards = document.querySelectorAll(".card");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    },
+    { threshold: 0.4 }
+  );
+
+  cards.forEach((card) => observer.observe(card));
+</script>
+
+</body>
+</html>

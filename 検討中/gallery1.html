@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>gallery</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: "MyFont", serif;
+  display: flex;
+  background: #f8f8f8;
+  color: #222;
+}
+
+@font-face {
+  font-family: "MyFont";   /* 好きな名前でOK */
+  src: url("font_1_kokumr.ttf");  /* ファイル指定 */
+}
+
+/* 年表 */
+.timeline {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 130px;
+  height: 100vh;
+  background: #ffffff;
+  border-right: 1px solid #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.timeline ul {
+  list-style: none;
+  padding: 0;
+}
+
+.timeline li {
+  margin: 18px 0;
+  color: #999;
+  transition: 0.3s;
+  font-size: 14px;
+}
+
+.timeline li.active {
+  color: #333;
+  font-weight: bold;
+}
+
+/* メイン */
+.content {
+  margin-left: 150px;
+  width: calc(100% - 150px);
+}
+
+.section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* レイアウト */
+.inner {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  max-width: 1000px;
+}
+
+/* 交互 */
+/* .section:nth-child(even) .inner {
+  flex-direction: row-reverse;
+} */
+
+/* 画像 */
+.image-box img {
+  width: 260px;
+  height: auto;
+  border-radius: 10px;
+  transition: 0.4s;
+  /* box-shadow: 0 5px 15px rgba(0,0,0,0.1); */
+}
+
+/* .image-box img:hover {
+  filter: grayscale(0%);
+  transform: scale(1.03);
+} */
+
+/* テキスト */
+.text {
+  max-width: 420px;
+}
+
+.text h2 {
+  margin: 0 0 10px;
+  font-size: 22px;
+  letter-spacing: 1px;
+}
+
+.text p {
+  line-height: 1.8;
+  color: #555;
+  font-size: 14px;
+}
+</style>
+
+</head>
+<body>
+<!-- 年表 -->
+<!-- <div class="timeline">
+  <ul>
+    <li>0ヶ月</li>
+    <li>6か月</li>
+    <li>9歳</li>
+    <li>12歳</li>
+    <li>14歳</li>
+  </ul>
+</div> -->
+<div class="content">
+<h3>名前：亀山リン</h3>
+<br>
+<!-- （実家が散らかっているため加工を施している画像があります・・・） -->
+<br>
+<br>
+<a href="index.html">トップページへ戻る</a>
+  <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/20121215.jpg">
+      </div>
+      <div class="text">
+        <h2>2012/09/08｜誕生</h2>
+        <p>静かな世界に現れた小さな命。まだ何も知らない、やわらかな時間。(AIにより生成)</p>
+      </div>
+    </div>
+  </div>
+
+    <div class="section">
+      <div class="inner">
+      <div class="image-box">
+        <img src="cat/201212.JPG">
+      </div>
+      <div class="text">
+        <h2>2012/12｜3ヶ月</h2>
+      </div>
+    </div>
+  </div>
+
+
+    <div class="section">
+      <div class="inner">
+      <div class="image-box">
+        <img src="cat/201304.JPG">
+      </div>
+      <div class="text">
+        <h2>2013/04｜7ヶ月</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+      <div class="inner">
+      <div class="image-box">
+        <img src="cat/201307.JPG">
+      </div>
+      <div class="text">
+        <h2>2013/07｜10ヶ月</h2>
+      </div>
+    </div>
+  </div>
+
+      <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/201312.jpg">
+      </div>
+      <div class="text">
+        <h2>2013/12｜1歳</h2>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/201312_2.jpg">
+      </div>
+      <div class="text">
+        <h2>2013/12｜1歳</h2>
+      </div>
+    </div>
+  </div>
+
+      <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/201401.JPG">
+      </div>
+      <div class="text">
+        <h2>2014/01｜1歳</h2>
+      </div>
+    </div>
+  </div>
+  
+        <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/201404.JPG">
+      </div>
+      <div class="text">
+        <h2>2014/04｜1歳</h2>
+      </div>
+    </div>
+  </div>
+
+
+          <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/201406.JPG">
+      </div>
+      <div class="text">
+        <h2>2014/06｜1歳</h2>
+      </div>
+    </div>
+  </div>
+
+          <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/20140702.jpg">
+      </div>
+      <div class="text">
+        <h2>2014/07｜1歳</h2>
+      </div>
+    </div>
+  </div>
+
+
+        <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/201407.JPG">
+      </div>
+      <div class="text">
+        <h2>2014/07｜1歳</h2>
+      </div>
+    </div>
+  </div>
+
+
+      <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/201503.JPG">
+      </div>
+      <div class="text">
+        <h2>2015/04｜2歳</h2>
+      </div>
+    </div>
+  </div>
+
+        <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/201508_3.JPG">
+      </div>
+      <div class="text">
+        <h2>2015/08｜2歳</h2>
+      </div>
+    </div>
+  </div>
+
+        <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/201508.JPG">
+      </div>
+      <div class="text">
+        <h2>2015/08｜2歳</h2>
+      </div>
+    </div>
+  </div>
+
+
+          <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/201509_2.jpg">
+      </div>
+      <div class="text">
+        <h2>2015/09｜3歳</h2>
+      </div>
+    </div>
+  </div>
+
+      <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/201601_2.JPG">
+      </div>
+      <div class="text">
+        <h2>2016/01｜3歳</h2>
+      </div>
+    </div>
+  </div>
+
+
+        <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/201603.jpg">
+      </div>
+      <div class="text">
+        <h2>2016/03｜3歳</h2>
+      </div>
+    </div>
+  </div>
+
+        <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/201609_2.JPG">
+      </div>
+      <div class="text">
+        <h2>2016/09｜4歳</h2>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/201610_3.JPG">
+      </div>
+      <div class="text">
+        <h2>2016/10｜4歳</h2>
+      </div>
+    </div>
+  </div>
+  
+      <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/201610.JPG">
+      </div>
+      <div class="text">
+        <h2>2016/10｜4歳</h2>
+      </div>
+    </div>
+  </div>
+
+          <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/201707.JPG">
+      </div>
+      <div class="text">
+        <h2>2017/07｜4歳</h2>
+      </div>
+    </div>
+  </div>
+
+
+
+            <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/201710_.JPG">
+      </div>
+      <div class="text">
+        <h2>2017/10｜5歳</h2>
+      </div>
+    </div>
+  </div>
+
+
+
+
+      <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/201803_.JPG">
+      </div>
+      <div class="text">
+        <h2>2018/03｜5歳</h2>
+      </div>
+    </div>
+  </div>
+
+              <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/201803.JPG">
+      </div>
+      <div class="text">
+        <h2>2018/03｜5歳</h2>
+      </div>
+    </div>
+  </div>
+
+        <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/201809.jpg">
+      </div>
+      <div class="text">
+        <h2>2018/09｜6歳</h2>
+      </div>
+    </div>
+  </div>
+
+      <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/201906.png">
+      </div>
+      <div class="text">
+        <h2>2019/06｜6歳</h2>
+      </div>
+    </div>
+  </div>
+
+            <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/201909.PNG">
+      </div>
+      <div class="text">
+        <h2>2019/09｜7歳</h2>
+      </div>
+    </div>
+  </div>
+
+    <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/202005_2.PNG">
+      </div>
+      <div class="text">
+        <h2>2020/05｜7歳</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/202005.jpg">
+      </div>
+      <div class="text">
+        <h2>2020/05｜7歳</h2>
+      </div>
+    </div>
+  </div>
+
+        <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/202101.jpg">
+      </div>
+      <div class="text">
+        <h2>2021/01｜8歳</h2>
+      </div>
+    </div>
+  </div>
+              <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/202103.PNG">
+      </div>
+      <div class="text">
+        <h2>2021/03｜8歳</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="inner">
+      <div class="image-box">
+              <img src="cat/202109_.JPG">
+      </div>
+      <div class="text">
+        <h2>2021/09｜9歳</h2>
+      </div>
+    </div>
+  </div>
+
+      <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/202109.jpg">
+      </div>
+      <div class="text">
+        <h2>2021/09｜9歳</h2>
+      </div>
+    </div>
+  </div>
+
+  
+
+      <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/202110.JPG">
+      </div>
+      <div class="text">
+        <h2>2021/10｜9歳</h2>
+      </div>
+    </div>
+  </div>
+
+      <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/202212.png">
+      </div>
+      <div class="text">
+        <h2>2022/12｜10歳</h2>
+      </div>
+    </div>
+  </div>
+
+      <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/202301.png">
+      </div>
+      <div class="text">
+        <h2>2023/01｜10歳</h2>
+      </div>
+    </div>
+  </div>
+
+
+  
+      <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/202312.png">
+      </div>
+      <div class="text">
+        <h2>2023/12｜10歳</h2>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="section">
+    <div class="inner">
+      <div class="image-box">
+                <img src="cat/202407_.PNG">
+      </div>
+      <div class="text">
+        <h2>2024/07｜11歳</h2>
+      </div>
+    </div>
+  </div>
+
+
+      <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/202407.JPG">
+      </div>
+      <div class="text">
+        <h2>2024/07｜11歳</h2>
+      </div>
+    </div>
+  </div>
+
+
+      <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/202408.png">
+      </div>
+      <div class="text">
+        <h2>2024/08｜11歳</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="inner">
+      <div class="image-box">
+                <img src="cat/202411.jpg">
+      </div>
+      <div class="text">
+        <h2>2024/11｜12歳</h2>
+      </div>
+    </div>
+  </div>
+
+
+  
+      <div class="section">
+    <div class="inner">
+      <div class="image-box">
+       <img src="cat/202503.jpg">
+      </div>
+      <div class="text">
+        <h2>2025/03｜12歳</h2>
+      </div>
+    </div>
+  </div>
+
+
+    <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/202505_2.jpg">
+        
+        <img src="cat/202505.jpg">
+      </div>
+      <div class="text">
+        <h2>2025/05｜12歳</h2>
+      </div>
+    </div>
+  </div>
+
+      <div class="section">
+    <div class="inner">
+      <div class="image-box">
+       <img src="cat/202505_3.jpg">
+      </div>
+      <div class="text">
+        <h2>2025/05｜12歳</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="inner">
+      <div class="image-box">
+        <img src="cat/202601_.PNG">
+      </div>
+      <div class="text">
+        <h2>2026/01｜13歳</h2>
+      </div>
+    </div>
+  </div>
+  <h1><a href="index.html">トップページへ戻る</a></h1>
+
+</div>
+
+<script>
+const sections = document.querySelectorAll('.section');
+const timelineItems = document.querySelectorAll('.timeline li');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const index = [...sections].indexOf(entry.target);
+
+      timelineItems.forEach(li => li.classList.remove('active'));
+      if (timelineItems[index]) {
+        timelineItems[index].classList.add('active');
+      }
+    }
+  });
+}, { threshold: 0.5 });
+
+sections.forEach(section => observer.observe(section));
+</script>
+
+</body>
+</html>

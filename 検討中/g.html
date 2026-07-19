@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:#ffffff; /* 白背景 */
+  color:#444;         /* 控えめな濃淡グレー */
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  overflow:auto;
+  /* letter-spacing:0.5px; */
+}
+
+/* タイトル */
+h1{
+  text-align:center;
+  padding:20px 0 25px;
+  font-size:20px;    /* 小さめ */
+  font-weight:500;
+  color:#555;
+}
+
+/* 全体 */
+.gallery-container{
+  display:flex;
+  flex-direction:column;
+  gap:25px;
+}
+
+/* 横スクロールエリア */
+.gallery-wrap{
+  overflow:hidden;
+  width:100%;
+}
+
+/* 横並び */
+.gallery{
+  display:flex;
+  gap:14px;
+  width:max-content;
+  padding:0 20px;
+
+  animation-name:scroll;
+  animation-timing-function:linear;
+  animation-iteration-count:infinite;
+}
+
+/* 逆方向 */
+.reverse{
+  animation-direction:reverse;
+}
+
+/* スピード */
+.speed1{
+  animation-duration:32s;
+}
+.speed2{
+  animation-duration:40s;
+}
+.speed3{
+  animation-duration:34s;
+}
+
+/* 画像 */
+.gallery-item{
+  flex-shrink:0;
+}
+
+.gallery img{
+  width:260px;
+  height:180px;
+  object-fit:cover;
+  border-radius:12px;
+  cursor:pointer;
+
+  transition:
+    transform .25s,
+    box-shadow .25s,
+    opacity .25s;
+}
+
+/* hover：控えめ */
+.gallery img:hover{
+  transform:scale(1.03);
+  box-shadow:0 6px 16px rgba(0,0,0,0.12);
+  opacity:0.92;
+}
+
+/* 無限スクロール */
+@keyframes scroll{
+  from{ transform:translateX(0); }
+  to{ transform:translateX(-50%); }
+}
+
+/* ライトボックス */
+.lightbox{
+  position:fixed;
+  inset:0;
+  background:rgba(255,255,255,0.88); /* 白系の半透明 */
+  backdrop-filter:blur(4px);
+
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+
+/* 中身 */
+.lightbox-content{
+  max-width:90%;
+  max-height:90%;
+  text-align:center;
+}
+
+/* 拡大画像 */
+.lightbox img{
+  max-width:100%;
+  max-height:75vh;
+  border-radius:14px;
+  animation:zoom .25s ease;
+}
+
+/* 説明文 */
+.caption{
+  margin-top:14px;
+  font-size:14px;
+  line-height:1.6;
+  color:#555;
+  white-space:pre-line;
+}
+
+/* 閉じるボタン */
+.close{
+  position:absolute;
+  top:18px;
+  right:26px;
+
+  font-size:26px;
+  cursor:pointer;
+  color:#333;
+  padding:6px 10px;
+  border-radius:6px;
+  background:rgba(255,255,255,0.6);
+  backdrop-filter:blur(3px);
+  transition:opacity .2s;
+}
+.close:hover{
+  opacity:0.7;
+}
+
+/* 拡大アニメ */
+@keyframes zoom{
+  from{
+    transform:scale(.85);
+    opacity:0;
+  }
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+/* スマホ */
+@media(max-width:768px){
+
+  body{
+    overflow:auto;
+  }
+
+  .gallery img{
+    width:190px;
+    height:135px;
+  }
+
+  .caption{
+    font-size:13px;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<h1>お気に入りの画像集</h1>
+
+<div class="gallery-container">
+
+  <!-- 1段目 -->
+  <div class="gallery-wrap">
+    <div class="gallery speed1">
+
+      <div class="gallery-item">
+        <img src="de/201208.jpg"
+             data-caption="一番好きな家族写真。ホラー映画の前兆を感じる。">
+      </div>
+
+      <div class="gallery-item">
+        <img src="de/20150504.jpg"
+             data-caption="中学校に、多分盗撮用のペン型カメラをAmazonで買って持っていき、コッペパンを落とした時に撮った写真">
+      </div>
+
+      <div class="gallery-item">
+        <img src="de/20080923.JPG"
+             data-caption="2008/09/23 情報量が多すぎる写真">
+      </div>
+
+      <div class="gallery-item">
+        <img src="de/un.JPG"
+             data-caption="このころからヘビが好きだったもよう">
+      </div>
+
+      <div class="gallery-item">
+        <img src="de/20090403.JPG"
+             data-caption="2009/04/03">
+      </div>
+
+      <!-- 複製 -->
+      <div class="gallery-item">
+        <img src="https://picsum.photos/id/1015/800/600"
+             data-caption="Mountain Landscape">
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://picsum.photos/id/1016/800/600"
+             data-caption="Beautiful Forest">
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://picsum.photos/id/1018/800/600"
+             data-caption="Calm Lake">
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 2段目 -->
+  <div class="gallery-wrap">
+    <div class="gallery reverse speed2">
+
+      <div class="gallery-item">
+        <img src="https://picsum.photos/id/1040/800/600"
+             data-caption="Snow Mountain">
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://picsum.photos/id/1050/800/600"
+             data-caption="Road Trip">
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://picsum.photos/id/1060/800/600"
+             data-caption="River Side">
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://picsum.photos/id/1074/800/600"
+             data-caption="City Night">
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://picsum.photos/id/1084/800/600"
+             data-caption="Sunset Sky">
+      </div>
+
+      <!-- 複製 -->
+      <div class="gallery-item">
+        <img src="https://picsum.photos/id/1040/800/600"
+             data-caption="Snow Mountain">
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://picsum.photos/id/1050/800/600"
+             data-caption="Road Trip">
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://picsum.photos/id/1060/800/600"
+             data-caption="River Side">
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 3段目 -->
+  <div class="gallery-wrap">
+    <div class="gallery speed3">
+
+      <div class="gallery-item">
+        <img src="https://picsum.photos/id/110/800/600"
+             data-caption="Beach Sunset">
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://picsum.photos/id/120/800/600"
+             data-caption="Wild Nature">
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://picsum.photos/id/130/800/600"
+             data-caption="Old Town">
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://picsum.photos/id/140/800/600"
+             data-caption="Blue Water">
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://picsum.photos/id/150/800/600"
+             data-caption="Morning Light">
+      </div>
+
+      <!-- 複製 -->
+      <div class="gallery-item">
+        <img src="https://picsum.photos/id/110/800/600"
+             data-caption="Beach Sunset">
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://picsum.photos/id/120/800/600"
+             data-caption="Wild Nature">
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://picsum.photos/id/130/800/600"
+             data-caption="Old Town">
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- ライトボックス -->
+<div class="lightbox" id="lightbox">
+
+  <div class="close" id="closeBtn">✕</div>
+
+  <div class="lightbox-content">
+    <img id="lightboxImg" src="">
+    <div class="caption" id="caption"></div>
+  </div>
+
+</div>
+
+<script>
+const images = document.querySelectorAll(".gallery img");
+
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightboxImg");
+const caption = document.getElementById("caption");
+const closeBtn = document.getElementById("closeBtn");
+
+/* 画像クリック */
+images.forEach(img => {
+  img.addEventListener("click", () => {
+    lightbox.style.display = "flex";
+    lightboxImg.src = img.src;
+    caption.textContent = img.dataset.caption;
+  });
+});
+
+/* 閉じる */
+closeBtn.addEventListener("click", () => {
+  lightbox.style.display = "none";
+});
+
+/* 背景クリック */
+lightbox.addEventListener("click", (e) => {
+  if(e.target === lightbox){
+    lightbox.style.display = "none";
+  }
+});
+
+/* ESCキー */
+document.addEventListener("keydown", (e) => {
+  if(e.key === "Escape"){
+    lightbox.style.display = "none";
+  }
+});
+</script>
+
+</body>
+</html>

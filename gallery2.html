@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>gallery2</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #ffffff;
+      color: #070202;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .wrapper {
+      display: flex;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+      position: relative;
+    }
+
+    /* 左側：年表の軸 */
+    .timeline {
+      position: sticky;
+      top: 40px;
+      width: 180px;
+      padding-right: 20px;
+      border-right: 2px solid #444;
+    }
+
+    .timeline-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .timeline-item {
+      margin-bottom: 18px;
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    .timeline-year {
+      font-weight: bold;
+      color: #fff;
+      display: block;
+    }
+
+    /* 右側：ギャラリー */
+    .gallery {
+      flex: 1;
+      padding-left: 30px;
+    }
+
+    .section-title {
+      font-size: 26px;
+      margin-bottom: 24px;
+      font-weight: bold;
+    }
+
+    .card {
+      margin-bottom: 60px;
+      opacity: 0;
+      transform: translateX(60px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+      position: relative;
+    }
+
+    .card.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .card:nth-child(odd) {
+      transform: translateX(-60px);
+    }
+
+    .card:nth-child(odd).visible {
+      transform: translateX(0);
+    }
+
+    .card-year-label {
+      position: absolute;
+      left: -80px;
+      top: 10px;
+      font-size: 14px;
+      color: #888;
+    }
+
+    .card-image-wrapper {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+      border: 1px solid #333;
+      background: #000;
+    }
+
+    .card img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .card-content {
+      padding: 14px 4px 0;
+    }
+
+    .card-title {
+      font-size: 18px;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    .card-text {
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    /* スマホ対応 */
+    @media (max-width: 468px) {
+      .wrapper {
+        flex-direction: column;
+      }
+
+      .timeline {
+        position: static;
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #444;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+      }
+
+      .gallery {
+        padding-left: 0;
+      }
+
+      .card-year-label {
+        position: static;
+        margin-bottom: 4px;
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <!-- 左：年表の軸 -->
+    <aside class="timeline">
+      <div class="timeline-title">Photo Timeline</div>
+      <div class="timeline-item">
+        <span class="timeline-year">2018</span>
+        2003から
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-year">2019</span>
+        
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-year">2020</span>
+        
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-year">2021</span>
+        
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-year">2022</span>
+        
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-year">2023</span>
+        2010まで
+      </div>
+    </aside>
+
+    <!-- 右：スクロールでカットインするギャラリー -->
+    <main class="gallery">
+      <h1 class="section-title">幼少期の平成的服装ギャラリーです</h1>
+<br><br><br>
+
+      <section class="card">
+        <span class="card-year-label">2003</span>
+        <div class="card-image-wrapper">
+          <img src="h/20031124.jpg" alt="ギャラリー画像2">
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">2003/11</h2>
+          <p class="card-text">
+            丸亀城大手門
+          </p>
+        </div>
+      </section>
+
+      <section class="card">
+        <span class="card-year-label">2004</span>
+        <div class="card-image-wrapper">
+          <!-- ここを自分の画像パスに変更してください -->
+          <img src="h/200407.jpg" alt="ギャラリー画像1">
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">2004/07</h2>
+          <p class="card-text">
+            。
+          </p>
+        </div>
+      </section>
+
+      <!-- 画像3 -->
+      <section class="card">
+        <span class="card-year-label">2005</span>
+        <div class="card-image-wrapper">
+          <img src="h/20051224.jpg" alt="ギャラリー画像3">
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">2005/12</h2>
+          <p class="card-text">
+            <!-- 世界が少し止まったような年。それでも、窓の外の光は変わらず優しく差し込んでいた。 -->
+          </p>
+        </div>
+      </section>
+
+
+            <section class="card">
+        <span class="card-year-label">2006</span>
+        <div class="card-image-wrapper">
+          <img src="h/20060101.jpg" alt="ギャラリー画像4">
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">2006/01</h2>
+          <p class="card-text">
+          </p>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-image-wrapper">
+          <img src="h/20060401.jpg" alt="ギャラリー画像4">
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">2006/04</h2>
+          <p class="card-text">
+          </p>
+        </div>
+      </section>
+
+      <!-- 画像4 -->
+      <section class="card">
+        <div class="card-image-wrapper">
+          <img src="h/20060416.jpg" alt="ギャラリー画像4">
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">2006/04</h2>
+          <p class="card-text">
+          </p>
+        </div>
+      </section>
+
+            <section class="card">
+        <div class="card-image-wrapper">
+          <img src="h/200607.JPG" alt="ギャラリー画像6">
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">2006/07</h2>
+          <p class="card-text">
+          </p>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-image-wrapper">
+          <img src="h/20061125.jpg" alt="ギャラリー画像6">
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">2006/11</h2>
+          <p class="card-text">
+            (旧)マルナカの袋。
+          </p>
+        </div>
+      </section>
+
+
+      <section class="card">
+        <div class="card-image-wrapper">
+          <img src="h/200612.JPG" alt="ギャラリー画像6">
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">2006/12</h2>
+          <p class="card-text">
+          </p>
+        </div>
+      </section>
+
+      
+      <section class="card">
+        <span class="card-year-label">2007</span>
+        <div class="card-image-wrapper">
+          <img src="h/200703.jpg" alt="">
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">2007/03</h2>
+          <p class="card-text">
+          </p>
+        </div>
+      </section>
+
+      
+      <section class="card">
+        <span class="card-year-label">2007</span>
+        <div class="card-image-wrapper">
+          <img src="h/200703_2.JPG" alt="ギャラリー画像6">
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">2007/03</h2>
+          <p class="card-text">
+          </p>
+        </div>
+      </section>
+
+      
+            <section class="card">
+        <div class="card-image-wrapper">
+          <img src="h/20070405.jpg" alt="ギャラリー画像4">
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">2007/04</h2>
+          <p class="card-text">
+          </p>
+        </div>
+      </section>
+
+      
+      <section class="card">
+        <div class="card-image-wrapper">
+          <img src="h/200706.JPG" alt="ギャラリー画像6">
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">2007/06</h2>
+          <p class="card-text">
+          </p>
+        </div>
+      </section>
+
+
+            <section class="card">
+        <div class="card-image-wrapper">
+          <img src="h/20070602.jpg" alt="ギャラリー画像6">
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">2007/06</h2>
+          <p class="card-text">
+          </p>
+        </div>
+      </section>
+      
+
+      
+            <section class="card">
+        <div class="card-image-wrapper">
+          <img src="h/20070801.jpg" alt="ギャラリー画像6">
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">2007/08</h2>
+          <p class="card-text">
+          </p>
+        </div>
+      </section>
+
+      
+                  <section class="card">
+        <div class="card-image-wrapper">
+          <img src="h/20070820.jpg" alt="ギャラリー画像6">
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">2007/08</h2>
+          <p class="card-text">
+          </p>
+        </div>
+      </section>
+
+
+      <section class="card">
+        <div class="card-image-wrapper">
+          <img src="h/200709_2.jpg" alt="ギャラリー画像6">
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">2007/09</h2>
+        </div>
+      </section>
+
+      
+      <section class="card">
+        <span class="card-year-label">2008</span>
+        <div class="card-image-wrapper">
+          <img src="h/20080103.jpg" alt="ギャラリー画像6">
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">2008/01</h2>
+          <p class="card-text">
+          </p>
+        </div>
+      </section>
+
+            <section class="card">
+        <div class="card-image-wrapper">
+          <img src="h/200804.jpg" alt="ギャラリー画像6">
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">2008/04</h2>
+          <p class="card-text">
+          </p>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-image-wrapper">
+          <img src="h/200804_2.jpg" alt="ギャラリー画像6">
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">2008/08</h2>
+          <p class="card-text">
+          </p>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-image-wrapper">
+          <img src="h/200809.jpg" alt="ギャラリー画像6">
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">2008/09</h2>
+          <p class="card-text">
+          </p>
+        </div>
+      </section>
+
+      
+      <section class="card">
+        <span class="card-year-label">2009</span>
+        <div class="card-image-wrapper">
+          <img src="h/20090221.jpg" alt="ギャラリー画像6">
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">2009/02</h2>
+          <p class="card-text">
+          </p>
+        </div>
+      </section>
+
+      
+      <section class="card">
+        <div class="card-image-wrapper">
+          <img src="h/20090321.jpg" alt="ギャラリー画像6">
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">2009/03</h2>
+          <p class="card-text">
+          </p>
+        </div>
+      </section>
+
+      
+      <section class="card">
+        <div class="card-image-wrapper">
+          <img src="h/20090505.jpg" alt="ギャラリー画像6">
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">2009/05</h2>
+          <p class="card-text">
+          </p>
+        </div>
+      </section>
+
+      
+      <section class="card">
+        <div class="card-image-wrapper">
+          <img src="h/20090531.JPG" alt="ギャラリー画像6">
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">2009/05</h2>
+          <p class="card-text">
+            眉毛の角度まで同じ・・・。
+          </p>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-image-wrapper">
+          <img src="h/20091011.jpg" alt="ギャラリー画像6">
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">2009/10</h2>
+          <p class="card-text">
+          </p>
+        </div>
+      </section>
+
+
+
+            <section class="card">
+        <div class="card-image-wrapper">
+          <img src="h/20091223.jpg" alt="ギャラリー画像6">
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">2009/12</h2>
+          <p class="card-text">
+          </p>
+        </div>
+      </section>
+
+            <section class="card">
+        <div class="card-image-wrapper">
+          <img src="h/20091225_2.jpg" alt="ギャラリー画像6">
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">2009/12</h2>
+          <p class="card-text">
+          </p>
+        </div>
+      </section>
+
+
+            <section class="card">
+              
+        <span class="card-year-label">2010</span>
+        <div class="card-image-wrapper">
+          <img src="h/20100117.jpg" alt="ギャラリー画像6">
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">2010/01</h2>
+          <p class="card-text">お馴染み ドラ夢くん
+          </p>
+        </div>
+      </section>
+
+
+            <section class="card">
+        <div class="card-image-wrapper">
+          <img src="h/20100515.jpg" alt="ギャラリー画像6">
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">2010/05</h2>
+          <p class="card-text">
+          </p>
+        </div>
+      </section>
+
+      <h1>おわり</h1>
+    </main>
+  </div>
+  <script>
+    // スクロールでカードをカットインさせる処理
+    document.addEventListener("DOMContentLoaded", function () {
+      const cards = document.querySelectorAll(".card");
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              // 一度表示したら監視をやめる場合は以下を有効化
+              // observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.2
+        }
+      );
+
+      cards.forEach((card) => observer.observe(card));
+    });
+  </script>
+            <h2>     
+            <a href="index.php">トップページへ戻る</a><br>
+            <a href="gallery.html">ギャラリーへ戻る</a>
+            </h2>
+
+</body>
+</html>

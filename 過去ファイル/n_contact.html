@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>お問い合わせ</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================
+   STATE CONTROL（JSなし）
+========================= */
+#mode { display: none; }
+
+#mode:checked ~ .scene {
+  filter: hue-rotate(35deg) brightness(1.15) contrast(1.1);
+}
+
+#mode:checked ~ .scene .core {
+  transform: scale(1.05) rotate(1deg);
+}
+
+/* =========================
+   BASE
+========================= */
+body {
+  margin: 0;
+  background: #120a08;
+  overflow: hidden;
+  font-family: "DotGothic16", monospace;
+  color: #ffd3a1;
+}
+
+/* =========================
+   SPACE LAYERS
+========================= */
+
+/* 背景グラデーション（呼吸） */
+.bg {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, #533b7b, #010714 70%);
+  animation: breathe 8s ease-in-out infinite;
+  z-index: -3;
+}
+
+@keyframes breathe {
+  0%,100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.1); opacity: 1; }
+}
+
+/* ノイズ */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    rgba(255,255,255,0.03) 0px,
+    rgba(255,255,255,0.03) 1px,
+    transparent 2px,
+    transparent 3px
+  );
+  pointer-events: none;
+  z-index: 10;
+  mix-blend-mode: overlay;
+}
+
+/* 光の粒子 */
+.p {
+  position: fixed;
+  width: 2px;
+  height: 2px;
+  background: #ffb45e;
+  animation: float 12s infinite linear;
+  opacity: 0.8;
+}
+
+@keyframes float {
+  0% { transform: translateY(110vh); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-10vh); opacity: 0; }
+}
+
+/* =========================
+   CORE SCENE
+========================= */
+.scene {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: 1s;
+}
+
+/* タイトル（生命体） */
+.title {
+  font-size: 3rem;
+  color: #ffb45e;
+  animation: pulse 3s ease-in-out infinite;
+  text-shadow: 0 0 10px #f5f0ed, 0 0 30px #281e1b;
+}
+
+@keyframes pulse {
+  0%,100% { transform: translateY(0); letter-spacing: 3px; }
+  50% { transform: translateY(-10px); letter-spacing: 6px; }
+}
+
+/* =========================
+   CORE OBJECT（中心構造体）
+========================= */
+.core {
+  margin-top: 40px;
+  width: 500px;
+  padding: 30px;
+  border: 1px solid #343534;
+  background: rgba(40, 15, 10, 0.6);
+  backdrop-filter: blur(6px);
+  transform-style: preserve-3d;
+  animation: drift 6s ease-in-out infinite;
+  transition: 0.8s;
+}
+
+@keyframes drift {
+  0%,100% { transform: translateY(0) rotateX(0deg); }
+  50% { transform: translateY(-10px) rotateX(5deg); }
+}
+
+/* ホバー＝空間歪み */
+.core:hover {
+  transform: rotateY(15deg) rotateX(10deg) scale(1.08);
+  box-shadow: 0 0 40px #070300;
+}
+
+/* =========================
+   MENU = 選択UI
+========================= */
+.menu {
+  margin-top: 20px;
+}
+
+.menu a {
+  color: #ffb45e;
+  margin: 0 12px;
+  text-decoration: none;
+  position: relative;
+}
+
+/* 光る下線 */
+.menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 1px;
+  background: #ff6a00;
+  transition: 0.4s;
+}
+
+.menu a:hover::after {
+  width: 100%;
+}
+
+/* =========================
+   CONTROL BUTTON
+========================= */
+.toggle {
+  position: fixed;
+  top: 15px;
+  right: 150px;
+  padding: 10px;
+  background: #575168;
+  color: black;
+  cursor: pointer;
+  font-size: 12px;
+  z-index: 100;
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+  position: absolute;
+  bottom: 20px;
+  text-align: center;
+  width: 100%;
+  opacity: 0.5;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- STATE -->
+<input type="checkbox" id="mode">
+<label for="mode" class="toggle">SYSTEM SHIFT</label>
+
+<div class="scene">
+
+<div class="bg"></div>
+
+<!-- particles -->
+<div class="p" style="left:10%; animation-delay:0s;"></div>
+<div class="p" style="left:30%; animation-delay:2s;"></div>
+<div class="p" style="left:50%; animation-delay:4s;"></div>
+<div class="p" style="left:70%; animation-delay:1s;"></div>
+<div class="p" style="left:90%; animation-delay:3s;"></div>
+
+<div class="title">お問い合わせ</div>
+
+<div class="menu">
+  <a href="#">E-MAIL</a>
+  <a href="#">PHONE</a>
+  <a href="#">FAX</a>
+</div>
+
+<div class="core">
+  <h2>ご連絡・ご依頼は以下のアドレスまで★</h2>
+  
+    <h3>E-mail：chatnoir0908@gmail.com</h3>
+    <p>※バグを見つけた方は、お手数ですが個人SNSにてご報告いただけますと幸いです。
+  </p>
+</div>
+<p>各種SNS</p><br>
+Instagram：@rk_98098<br>
+Twitter(X)：準備中<br>
+discord：@ndgtndgt<br>
+Filmarks：@310_ndgt<br>
+
+    <p>
+      <a href="index.html">← トップページに戻る</a>
+    </p>
+<footer>
+©2026
+</footer>
+
+</div>
+
+</body>
+</html>

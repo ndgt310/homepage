@@ -1,0 +1,83 @@
+<?php
+session_start();
+
+if(isset($_SESSION['login'])){
+    header("Location: index.php");
+    exit;
+}
+?>
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    /* background:#f5f5f5; */
+      font-family: "MyFont", monospace;
+}
+
+.image-button{
+  border:none;
+  background:none;
+  padding:0;
+  cursor:pointer;
+}
+
+    .blink {
+  animation: blink 1s infinite;
+  text-align: center;
+
+}
+@keyframes blink {
+  0% { opacity: 100; }
+}
+
+@font-face {
+  font-family: "MyFont";   /* 好きな名前でOK */
+  src: url("x12y16pxMaruMonica.ttf");  /* ファイル指定 */
+}
+
+</style>
+</head>
+<body>
+
+<div class="box">
+
+<div style="text-align: center;">
+<h1>ホームページへようこそ</h1>
+セキュリティ強化のため、一時的にアクセス制限をかけています<br>
+    ※このページは試験的に運用しています
+    <br><br>
+      <img src="top.jpg" width="30" alt="ログイン">
+       0908と入力      <img src="top.jpg" width="30" alt="ログイン">
+<br>
+
+<form action="auth.php" method="POST">
+
+<input type="password" name="password" required>
+<br><br><br>
+
+<button type="submit" class="image-button">
+  <img src="enter.jpg" width="220" alt="ログイン">
+</button>
+<br>
+<p class = "blink">Enter</p>
+</form>
+
+<?php if(isset($_GET['error'])): ?>
+<p style="color:red;">パスワードが違います</p>
+<?php endif; ?>
+
+</div>
+
+</body>
+</html>

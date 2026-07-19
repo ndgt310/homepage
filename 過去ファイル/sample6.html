@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>sample</title>
+
+<style>
+/* =========================
+   ベース
+========================= */
+body {
+  margin: 0;
+  background: #1e1410;
+  color: #e8d7c3;
+  font-family: "Georgia", "Yu Mincho", serif;
+}
+
+/* 紙ノイズ */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 4px 4px;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+/* =========================
+   メイン画面
+========================= */
+.screen {
+  max-width: 720px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #2a1c16;
+  border: 2px solid #6b4b3a;
+  box-shadow: inset 0 0 25px rgba(0,0,0,0.6),
+              0 10px 30px rgba(0,0,0,0.5);
+  border-radius: 6px;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+/* =========================
+   タイトル
+========================= */
+.title {
+  text-align: center;
+  font-size: 26px;
+  letter-spacing: 3px;
+  color: #f0e0cf;
+  border-bottom: 1px solid #7a5a45;
+  padding-bottom: 12px;
+  text-shadow: 0 0 5px rgba(0,0,0,0.4);
+
+  position: relative;
+  animation: titleFloat 4s ease-in-out infinite;
+}
+
+/* ゆらぎ（看板っぽい揺れ） */
+@keyframes titleFloat {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+/* かすかな光の揺らぎ */
+.title-text {
+  display: inline-block;
+  animation: glow 3s ease-in-out infinite;
+}
+
+/* インクっぽい明滅 */
+@keyframes glow {
+  0%,100% {
+    opacity: 1;
+    text-shadow: 0 0 6px rgba(240,224,207,0.15);
+  }
+  50% {
+    opacity: 0.92;
+    text-shadow: 0 0 2px rgba(240,224,207,0.05);
+  }
+}
+
+/* たまにノイズ的に揺れる（レトロ感強化） */
+.title:hover {
+  animation: shake 0.3s steps(2, end) infinite;
+}
+
+@keyframes shake {
+  0% { transform: translate(0,0); }
+  25% { transform: translate(1px,-1px); }
+  50% { transform: translate(-1px,1px); }
+  75% { transform: translate(1px,1px); }
+  100% { transform: translate(0,0); }
+}
+
+/* =========================
+   タブ
+========================= */
+input[type="radio"] {
+  display: none;
+}
+
+nav {
+  text-align: center;
+  margin: 20px 0;
+}
+
+nav label {
+  margin: 0 10px;
+  padding: 6px 12px;
+  background: #3b2a21;
+  border: 1px solid #7a5a45;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+nav label:hover {
+  background: #6a4a3a;
+}
+
+#tab1:checked ~ nav label[for="tab1"],
+#tab2:checked ~ nav label[for="tab2"],
+#tab3:checked ~ nav label[for="tab3"] {
+  background: #e8d7c3;
+  color: #1e1410;
+}
+
+/* =========================
+   コンテンツ
+========================= */
+.content {
+  display: none;
+}
+
+#tab1:checked ~ #about,
+#tab2:checked ~ #history,
+#tab3:checked ~ #contact {
+  display: block;
+}
+
+/* セクション */
+section {
+  margin-top: 20px;
+  padding: 18px;
+  background: #3a271f;
+  border: 1px solid #7a5a45;
+  box-shadow: 3px 3px 0 #120c09;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: 0.6s ease;
+}
+
+/* タグ */
+.tag {
+  display: inline-block;
+  margin: 3px;
+  padding: 3px 6px;
+  background: #1e1410;
+  border: 1px solid #7a5a45;
+  font-size: 12px;
+}
+
+/* タイムライン */
+.timeline-item {
+  border-left: 3px solid #e8d7c3;
+  padding-left: 10px;
+  margin-bottom: 10px;
+}
+
+/* タイピング */
+.typing::after {
+  content: "|";
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* ボタン */
+button {
+  margin-top: 10px;
+  padding: 8px 18px;
+  background: #5a3f31;
+  color: #f0e0cf;
+  border: 2px solid #2b1b14;
+  box-shadow: 3px 3px 0 #120c09;
+  cursor: pointer;
+}
+
+button:active {
+  transform: translate(2px,2px);
+  box-shadow: none;
+}
+
+/* フォーム */
+input, textarea {
+  width: 100%;
+  margin: 5px 0;
+  padding: 6px;
+  background: #1e1410;
+  color: #e8d7c3;
+  border: 1px solid #7a5a45;
+}
+
+/* ホバー演出 */
+section:hover {
+  transform: translateY(-3px) rotate(-0.2deg);
+}
+</style>
+</head>
+
+<body>
+
+<div class="screen">
+
+<div class="title">このページは現在工事中です</div>
+
+<input type="radio" name="tab" id="tab1" checked>
+<input type="radio" name="tab" id="tab2">
+<input type="radio" name="tab" id="tab3">
+
+<nav>
+<label for="tab1">自己紹介</label>
+<label for="tab2">略歴</label>
+<label for="tab3">お問い合わせ</label>
+</nav>
+
+<!-- 自己紹介 -->
+<div id="about" class="content">
+<section>
+<h2>自己紹介</h2>
+<p class="typing">
+#工事中です
+</p>
+
+<div>
+<span class="tag">#a</span>
+<span class="tag">#b</span>
+<span class="tag">#c</span>
+</div>
+</section>
+</div>
+
+<!-- 略歴 -->
+<div id="history" class="content">
+<section>
+<h2>略歴</h2>
+
+<div class="timeline-item">
+<strong>2015</strong><br>工事中です
+</div>
+
+<div class="timeline-item">
+<strong>2022</strong><br>○○○○
+</div>
+
+<div class="timeline-item">
+<strong>2026</strong><br>○○○○
+</div>
+
+</section>
+</div>
+
+<!-- お問い合わせ -->
+<div id="contact" class="content">
+<section>
+<h2>お問い合わせ</h2>
+
+<form>
+<input type="text" placeholder="お名前">
+<input type="email" placeholder="メール">
+<textarea placeholder="内容"></textarea>
+<button type="button">送信</button>
+</form>
+
+</section>
+</div>
+
+</div>
+      <h2><a href="index.html"> トップページに戻る</a>　　　←避難用ボタン</h2>
+
+
+<script>
+// タイピング演出
+window.addEventListener("DOMContentLoaded", () => {
+  const el = document.querySelector(".typing");
+  const text = el.textContent;
+  el.textContent = "";
+
+  let i = 0;
+  function type() {
+    if (i < text.length) {
+      el.textContent += text[i];
+      i++;
+      setTimeout(type, 50);
+    }
+  }
+  type();
+});
+
+// セクションフェードイン
+const sections = document.querySelectorAll("section");
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = 1;
+      entry.target.style.transform = "translateY(0)";
+    }
+  });
+});
+
+sections.forEach(sec => observer.observe(sec));
+</script>
+
+</body>
+</html>
