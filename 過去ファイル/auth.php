@@ -2,7 +2,7 @@
 session_start();
 
 // パスワード設定
-$password = "0908";
+$password = "98098";
 
 if($_POST['password'] === $password){
 

@@ -54,23 +54,40 @@ body{
 
 <div style="text-align: center;">
 <h1>ホームページへようこそ</h1>
-セキュリティ強化のため、一時的にアクセス制限をかけています<br>
-    ※このページは試験的に運用しています
+セキュリティ強化のため、アクセス制限をかけています<br>
+この先に進むには、パスワードが必要です
     <br><br>
+          <img src="top.jpg" width="30" alt="ログイン">
       <img src="top.jpg" width="30" alt="ログイン">
-       0908と入力      <img src="top.jpg" width="30" alt="ログイン">
+      <img src="top.jpg" width="30" alt="ログイン">
+
+      <img src="top.jpg" width="30" alt="ログイン">      
+      <img src="top.jpg" width="30" alt="ログイン">
+      <img src="top.jpg" width="30" alt="ログイン">
+          部外者立ち入り禁止
+      <img src="top.jpg" width="30" alt="ログイン">
+      <img src="top.jpg" width="30" alt="ログイン">
+      <img src="top.jpg" width="30" alt="ログイン">
+
+      <img src="top.jpg" width="30" alt="ログイン">      
+      <img src="top.jpg" width="30" alt="ログイン">
+      <img src="top.jpg" width="30" alt="ログイン">
 <br>
+
 
 <form action="auth.php" method="POST">
 
 <input type="password" name="password" required>
+<br>
 <br><br><br>
+
 
 <button type="submit" class="image-button">
   <img src="enter.jpg" width="220" alt="ログイン">
 </button>
 <br>
 <p class = "blink">Enter</p>
+<p class = "blink">押せ</p>
 </form>
 
 <?php if(isset($_GET['error'])): ?>

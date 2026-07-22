@@ -5,157 +5,8 @@ if(!isset($_SESSION['login'])){
     header("Location: login.php");
     exit;
 }
+require_once 'header.php';
 ?>
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>mayamekarin</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0px;
-      font-family: "MyFont", monospace;
-      background: #ffffff;
-      color: #32322e;
-      line-height: 1.8;
-        font-family: "MyFont", monospace;
-    }
-header {
-  margin: 0;
-  padding: 0px;
-  background: #222;
-  color: white;
-  padding: 20px;
-  text-align: center;
-}
-    /* .page {
-      max-width: 760px;
-      margin: 0 auto;
-      border: 1px solid #999;
-      padding: 24px;
-      background: #fff;
-    } */
-
-    h1 {
-      text-align: center;
-    }
-
-    .menu {
-      text-align: center;
-      margin: 0px 0;
-      padding: 12px;
-      border-top: 1px solid #999;
-      border-bottom: 1px solid #999;
-    }
-
-    /* .menu a {
-      color: blue;
-      margin: 0 10px;
-    } */
-
-/* ===== メニュー ===== */
-/* .menu {
-  text-align: center;
-  margin: 50px 0;
-} */
-
-.menu a {
-  color: rgb(2, 16, 11);
-  margin: 0 20px;
-  text-decoration: none;
-  position: relative;
-}
-
-/* 下線アニメーション */
-.menu a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -5px;
-  width: 0%;
-  height: 3px;
-  background: rgba(2, 7, 23, 0.701);
-  transition: 0.3s;
-}
-
-.menu a:hover::after {
-  width: 100%;
-}
-
-    .box {
-      margin-top: 24px;
-      padding: 16px;
-      border: 1px solid #999;
-    }
-
-    .blink {
-  animation: blink 1s infinite;
-  text-align: center;
-  color: #2a4f8f;
-}
-@keyframes moveBg {
-  0% { transform: translate(0,0); }
-  50% { transform: translate(-20%, -20%); }
-  100% { transform: translate(0,0); }
-}
-/* ===== キラ粒（暖色） ===== */
-.particle {
-  position: fixed;
-  width: 5px;
-  height: 5px;
-  background: #000000;
-  animation: float 12s infinite;
-  opacity: 0.7;
-}
-@keyframes float {
-  0% { transform: translateY(100vh); opacity: 0; }
-  50% { opacity: 1; }
-  100% { transform: translateY(-10vh); opacity: 0; }
-}
-@keyframes blink {
-  50% { opacity: 0; }
-}
-
-
-@font-face {
-  font-family: "MyFont";   /* 好きな名前でOK */
-  src: url("x12y16pxMaruMonica.ttf");  /* ファイル指定 */
-}
-
-  </style>
-</head>
-<body>
-
-    <div class="bg"></div>
-<div class="particle" style="left:15%; animation-delay:0s;"></div>
-<div class="particle" style="left:35%; animation-delay:2s;"></div>
-<div class="particle" style="left:55%; animation-delay:4s;"></div>
-<div class="particle" style="left:75%; animation-delay:1s;"></div>
-<div class="particle" style="left:90%; animation-delay:3s;"></div>
-
-  <!-- <div class="page"> -->
-    <header>
-    <h1>mayamekarin</h1>
-</header>
-    <div class="menu">
-      <!-- 別ページへリンク -->
-       <a href="index.php">ホーム</A>
-      <a href="profile.html">自己紹介</a>
-      <a href="bio.html">バイオグラフィー</a>
-      <!-- <a href="book.html">本</a> -->
-      <!-- <a href="movie.html">映画</a>     -->
-      <a href="gallery.html">ギャラリー</a>      
-      <a href="board.php">掲示板</a>
-     <a href="credit.html">クレジット</a>
-      <a href="sample3.html">サンプル</a>   
-      <a href="sample4.html">サンプル</a>    
-      <a href="sample5.html">サンプル</a>        
-      <a href="sample6.html">サンプル</a>       
-      <!-- <a href="#favorite">遍歴</a> -->
-      <!-- <a href="#contact">連絡</a> -->
-    </div>
     <p class="blink">★★ ようこそ！★★</p>
     
 あなたは
@@ -179,13 +30,14 @@ header {
           コンテンツ
         </h2>
         <p><a href="profile.html">自己紹介</a>　　　　-> 　　人物像について。</p>
-        <p><a href="bio.html">バイオグラフィー</a> ->　　現在工事中。</p>
+        <p><a href="bio.php">バイオグラフィー</a> ->　　現在工事中です。</p>
         <!-- <p><a href="book.html">本</a>　　　   　->　　これまでに読んだ本を紹介しています。</p> -->
         <!-- <p><a href="movie.html">映画</a> 　　　　   ->　　これまでに観た映画のなかで、心に残ったものを紹介しています。</p> -->
-        <P><a href="gallery.html">ギャラリー</a> 　　　->　　テーマ別に写真を掲載しています。</P>
-        <p><a href="board.html">掲示板></a>　　　　　->　　現在工事中。</p>
+        <P><a href="gallery.php">ギャラリー</a> 　　　->　　テーマ別に写真を掲載しています。</P>
+        <p><a href="board.php">掲示板></a>　　　　　->　　気軽に投稿ができます。（7/22追記）パスワードをかけたことで家族が閲覧不可になったので、好きなことを投稿してくれてOKです♩</p>
+        <p><a href="rec.php">記録</a> 　　　　　　　　->　　これまでに参加したLIVEや展覧会を備忘録的に載せる予定。現在工事中です。</p>
         <p><a href="credit.html">クレジット></a>　　　->　　本サイトを作成するにあたり使用した素材、作成協力者を記載しています。</p>
-        <P>サンプル   -> デザイン保存場所。現在工事中。</P>  
+ 
     </div>
           
     </div> 
@@ -201,6 +53,7 @@ header {
       <p>2026/05/06 クレジット記載</p>
       <p>2026/05/06 公開</p>
       <p>2026/07/19 パスワード認証機能追加</p>
+      <p>2026/07/22 権利表記を全ページに追加</p>
     </div>
 
     <div class="box" id="favorite">

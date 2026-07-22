@@ -45,10 +45,10 @@ body{
 <div class="box">
 
 <div style="text-align: center;">
-    このページは試験的に運用しています
+    この先に進むには、パスワードが必要です
     <br><br>
       <img src="top.jpg" width="30" alt="ログイン">
-       0908と入力      <img src="top.jpg" width="30" alt="ログイン">
+      <img src="top.jpg" width="30" alt="ログイン">
 <br>
 
 <form action="auth.php" method="POST">
@@ -61,6 +61,7 @@ body{
 </button>
 <br>
 Enter
+<br>押せ
 </form>
 
 <?php if(isset($_GET['error'])): ?>

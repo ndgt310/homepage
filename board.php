@@ -1,4 +1,5 @@
-<?php
+ <?php
+require_once 'header.php';
 
 if (!empty($_POST['msg'])) {
 
@@ -57,9 +58,7 @@ $filename = __DIR__ . "/log.txt";
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>mayamekarin</title>
+
   <style>
     body {
       margin: 0;
@@ -70,7 +69,7 @@ $filename = __DIR__ . "/log.txt";
       line-height: 1.8;
         font-family: "MyFont", monospace;
     }
-header {
+/* header {
   margin: 0;
   padding: 0px;
   background: #222;
@@ -78,25 +77,19 @@ header {
   padding: 20px;
   text-align: center;
 }
-    /* .page {
-      max-width: 760px;
-      margin: 0 auto;
-      border: 1px solid #999;
-      padding: 24px;
-      background: #fff;
-    } */
+  
 
     h1 {
       text-align: center;
-    }
-
+    } */
+/* 
     .menu {
       text-align: center;
       margin: 0px 0;
       padding: 12px;
       border-top: 1px solid #999;
       border-bottom: 1px solid #999;
-    }
+    } */
 
     /* .menu a {
       color: blue;
@@ -108,7 +101,7 @@ header {
   text-align: center;
   margin: 50px 0;
 } */
-
+/* 
 .menu a {
   color: rgb(2, 16, 11);
   margin: 0 20px;
@@ -213,23 +206,8 @@ textarea {
     <header>
     <h1>mayamekarin</h1>
 </header>
-    <div class="menu">
-      <!-- 別ページへリンク -->
-       <a href="index.php">ホーム</A>
-      <a href="profile.html">自己紹介</a>
-      <a href="bio.html">バイオグラフィー</a>
-      <!-- <a href="book.html">本</a> -->
-      <!-- <a href="movie.html">映画</a>     -->
-      <a href="gallery.html">ギャラリー</a>      
-      <a href="board.php">掲示板</a>
-      <a href="rec.html">記録</a>
-     <a href="credit.html">クレジット</a>
-      <a href="sample3.html">サンプル</a>    
-      <a href="sample5.html">サンプル</a>        
-      <a href="sample6.html">サンプル</a>       
-      <!-- <a href="#favorite">遍歴</a> -->
-      <!-- <a href="#contact">連絡</a> -->
-    </div>
+
+    </div> */
 
     <h2>下のフォームに名前とメッセージを入力すると、入力したメッセージが一番下の画面に表示されます</h2>
 <h3>誰でもどうぞ！たくさんの投稿をお待ちしております*^^*</h3>

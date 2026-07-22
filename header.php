@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if(!isset($_SESSION['login'])){
+    header("Location: login.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -116,34 +124,10 @@ header {
   src: url("x12y16pxMaruMonica.ttf");  /* ファイル指定 */
 }
 
-
-img:hover {
-  transform: scale(1.1);
-}
-img {
-  width: 150px;
-  height: auto;
-    margin: 10px;
-  /* border: 7px solid #373d7cfb; */
-}
-
-/* 拡大表示 */
-input:checked + img {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(3);
-  z-index: 100;
-  box-shadow: 0 0 20px black;
-  background: white;
-}
-input {
-  display: none;
-}
-
   </style>
 </head>
-<body>
+
+
     <div class="bg"></div>
 <div class="particle" style="left:15%; animation-delay:0s;"></div>
 <div class="particle" style="left:35%; animation-delay:2s;"></div>
@@ -157,62 +141,19 @@ input {
 </header>
     <div class="menu">
       <!-- 別ページへリンク -->
-       <A href="index.php">ホーム</A>
+       <a href="index.php">ホーム</A>
       <a href="profile.html">自己紹介</a>
-      <a href="bio.html">バイオグラフィー</a>
+      <a href="bio.php">バイオグラフィー</a>
       <!-- <a href="book.html">本</a> -->
       <!-- <a href="movie.html">映画</a>     -->
-      <a href="gallery.html">ギャラリー</a>      
+      <a href="gallery.php">ギャラリー</a>      
       <a href="board.php">掲示板</a>
-      <a href="rec.html">記録</a>
+      <a href="rec.php">記録</a>
      <a href="credit.html">クレジット</a>
-      <a href="sample3.html">サンプル</a>   
+      <!-- <a href="sample3.html">サンプル</a>   
+      <a href="sample4.html">サンプル</a>    
       <a href="sample5.html">サンプル</a>        
-      <a href="sample6.html">サンプル</a>       
+      <a href="sample6.html">サンプル</a>        -->
       <!-- <a href="#favorite">遍歴</a> -->
       <!-- <a href="#contact">連絡</a> -->
     </div>
-<body>
-  
-<h1>ギャラリー</h1>
-        <h3>※クリックで拡大します</h3>
-
-    <div class="profile">  
-    <!-- <label>
-        <input type="checkbox">
-        <img src="1.jpg" alt="プロフィール画像">
-    </label> -->
-    <label>
-        <input type="checkbox">
-        <img src="2.jpg" alt="プロフィール画像" width="300">
-    </label>   
-    
-     <label>
-        <input type="checkbox">
-        <img src="3.jpg" alt="プロフィール画像">
-    </label>      
-
-    <label>
-        <input type="checkbox">
-        <img src="4.jpg" alt="プロフィール画像">
-    </label>   
-
-    <label>
-        <input type="checkbox">
-        <img src="5.jpg" alt="プロフィール画像">
-    </label>   
-
-    <br>
-    <br>
-        <h1><a href="gallery1.html">ネコ</a></h1>
-    <br>
-        <h3><a href="gallery2.html">その他➀</a> </h3>
-        <h3>その他➁（準備中）</a> </h3>
-
-</div>
-    <p>
-      <a href="index.php">トップページに戻る</a>
-    </p>
-  </div>
-</body>
-</html>

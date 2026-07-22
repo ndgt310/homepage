@@ -1,5 +1,6 @@
 <!-- C:\xampp\php\php.exe -S localhost:8000 -->
-<?php
+ <?php
+require_once 'header.php';
 
 if (!empty($_POST['msg'])) {
 
