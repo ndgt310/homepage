@@ -1,0 +1,27 @@
+<?php
+require_once 'header.php';
+?>
+
+<h1>その他</h1>
+</head>
+<body>
+<script>
+const names = ['山田', '鈴木', '佐藤', '高橋', '田中'];
+const count = 12; // 表示する名前の数
+for (let i = 0; i < count; i++) {
+    const el = document.createElement('div');
+    el.textContent = names[Math.floor(Math.random() * names.length)];
+    el.style.position = 'fixed';
+    el.style.left = Math.random() * 90 + 'vw';
+    el.style.top = Math.random() * 90 + 'vh';
+    el.style.transform = 'translate(-50%,-50%)';
+    el.style.pointerEvents = 'none';
+    el.style.opacity = 0.8;
+    el.style.fontSize = (12 + Math.random() * 18) + 'px';
+    el.style.color = ['#222','#444','#666','#880000','#006600'][Math.floor(Math.random()*5)];
+    el.style.zIndex = 9999;
+    document.body.appendChild(el);
+}
+</script>
+
+</body>
