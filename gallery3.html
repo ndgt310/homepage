@@ -1,0 +1,1850 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>炒飯</title>
+
+
+  <style>
+
+    /* ==================================================
+       基本設定
+    ================================================== */
+
+    :root {
+      --red: #8f0000;
+      --red-dark: #620000;
+
+      --gold: #dca52f;
+      --gold-light: #f0c85b;
+
+      --white: #fff8e8;
+    }
+
+
+    * {
+      box-sizing: border-box;
+    }
+
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+
+    body {
+
+      margin: 0;
+
+      color: var(--white);
+
+      background:
+        radial-gradient(
+          circle at 50% 35%,
+          rgba(255, 190, 70, 0.12),
+          transparent 35%
+        ),
+        linear-gradient(
+          135deg,
+          #a60000 0%,
+          #850000 50%,
+          #650000 100%
+        );
+
+      font-family:
+        "Myfont",
+        "Hiragino Mincho ProN",
+        "YuFanXinYu-Regular.ttf",
+        serif;
+
+      overflow-x: hidden;
+    }
+
+
+@font-face {
+  font-family: "MyFont";
+  src: url("YuFanXinYu-Medium.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+    /* ==================================================
+       背景の微妙な質感
+    ================================================== */
+
+    body::before {
+
+      content: "";
+
+      position: fixed;
+
+      inset: 0;
+
+      pointer-events: none;
+
+      opacity: 0.08;
+
+      background-image:
+        radial-gradient(
+          rgba(255,255,255,.5) 0.6px,
+          transparent 0.6px
+        );
+
+      background-size: 5px 5px;
+
+      z-index: 0;
+    }
+
+
+
+    /* ==================================================
+       金色の雲・渦巻き装飾
+    ================================================== */
+
+    .decorations {
+
+      position: fixed;
+
+      inset: 0;
+
+      pointer-events: none;
+
+      overflow: hidden;
+
+      z-index: 0;
+    }
+
+
+    .decoration {
+
+      position: absolute;
+
+      width: 420px;
+      height: 280px;
+
+      opacity: 0.88;
+    }
+
+
+    .decoration svg {
+
+      width: 100%;
+      height: 100%;
+    }
+
+
+    .decoration path {
+
+      fill: none;
+
+      stroke: var(--gold);
+
+      stroke-width: 4.5;
+
+      stroke-linecap: round;
+
+      stroke-linejoin: round;
+    }
+
+
+    /* ------------------------------------------
+       左上
+    ------------------------------------------ */
+
+    .decoration.top-left {
+
+      top: 70px;
+      left: -90px;
+
+      transform: rotate(-5deg);
+    }
+
+
+    /* ------------------------------------------
+       右上
+    ------------------------------------------ */
+
+    .decoration.top-right {
+
+      top: 25px;
+      right: -70px;
+
+      transform: scaleX(-1);
+    }
+
+
+    /* ------------------------------------------
+       左下
+    ------------------------------------------ */
+
+    .decoration.bottom-left {
+
+      bottom: -40px;
+      left: -70px;
+
+      transform: scaleY(-1);
+    }
+
+
+    /* ------------------------------------------
+       右下
+    ------------------------------------------ */
+
+    .decoration.bottom-right {
+
+      bottom: -30px;
+      right: -70px;
+
+      transform: scale(-1,-1);
+    }
+
+
+
+    /* ==================================================
+       ヘッダー
+    ================================================== */
+
+    header {
+
+      position: relative;
+
+      z-index: 5;
+
+      max-width: 1250px;
+
+      margin: auto;
+
+      padding:
+        28px 35px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+    }
+  
+    /* ==================================================
+       ナビゲーション
+    ================================================== */
+
+    nav {
+
+      display: flex;
+
+      gap: 36px;
+    }
+
+
+    nav a {
+
+      position: relative;
+
+      color: var(--white);
+
+      text-decoration: none;
+
+      font-size: 14px;
+
+      letter-spacing: .08em;
+
+      padding-bottom: 7px;
+    }
+
+
+    nav a::after {
+
+      content: "";
+
+      position: absolute;
+
+      left: 50%;
+
+      bottom: 0;
+
+      width: 0;
+
+      height: 1px;
+
+      background: var(--gold-light);
+
+      transition: .25s;
+    }
+
+
+    nav a:hover {
+
+      color: var(--gold-light);
+    }
+
+
+    nav a:hover::after {
+
+      left: 0;
+
+      width: 100%;
+    }
+
+
+
+    /* ==================================================
+       ハンバーガー
+    ================================================== */
+
+    .menu-button {
+
+      display: none;
+
+      width: 45px;
+      height: 45px;
+
+      border-radius: 50%;
+
+      border: 1px solid var(--gold);
+
+      color: var(--gold-light);
+
+      background: transparent;
+
+      font-size: 20px;
+    }
+
+
+
+    /* ==================================================
+       ヒーロー
+    ================================================== */
+
+    .hero {
+
+      position: relative;
+
+      z-index: 2;
+
+      max-width: 1250px;
+
+      margin: auto;
+
+      padding:
+        60px 35px
+        90px;
+
+      display: grid;
+
+      grid-template-columns:
+        .75fr 1.25fr;
+
+      gap: 45px;
+
+      align-items: center;
+    }
+
+
+    .hero-text {
+
+      padding-left: 20px;
+    }
+
+
+    .eyebrow {
+
+      color: var(--gold-light);
+
+      font-size: 12px;
+
+      letter-spacing: .32em;
+
+      margin-bottom: 20px;
+    }
+
+
+    .hero-title {
+
+      margin: 0;
+
+      font-size:
+        clamp(48px, 6vw, 78px);
+
+      line-height: 1.25;
+
+      letter-spacing: .08em;
+
+      font-weight: normal;
+    }
+
+
+    .hero-title span {
+
+      display: block;
+    }
+
+
+    .hero-title span:last-child {
+
+      margin-left: 55px;
+    }
+
+
+    .hero-line {
+
+      width: 230px;
+
+      height: 1px;
+
+      margin:
+        25px 0;
+
+      background:
+        linear-gradient(
+          90deg,
+          var(--gold),
+          transparent
+        );
+    }
+
+
+    .hero-description {
+
+      font-size: 15px;
+
+      line-height: 2.1;
+
+      letter-spacing: .08em;
+
+      opacity: .88;
+    }
+
+
+
+    /* ==================================================
+       ボタン
+    ================================================== */
+
+    .gold-button {
+
+      display: inline-block;
+
+      margin-top: 23px;
+
+      padding:
+        13px 35px;
+
+      border: 1px solid var(--gold-light);
+
+      border-radius: 5px;
+
+      color: var(--white);
+
+      text-decoration: none;
+
+      letter-spacing: .13em;
+
+      background:
+        rgba(70,0,0,.15);
+
+      transition: .25s;
+    }
+
+
+    .gold-button:hover {
+
+      color: #650000;
+
+      background: var(--gold-light);
+    }
+
+
+
+    /* ==================================================
+       炒飯写真
+    ================================================== */
+
+    .hero-photo {
+
+      position: relative;
+
+      padding: 10px;
+
+      border: 1px solid var(--gold);
+
+      border-radius:
+        50% 48% 52% 46%;
+
+      background:
+        rgba(255,210,80,.04);
+
+      transform: rotate(1deg);
+
+      box-shadow:
+        0 25px 70px
+        rgba(0,0,0,.28);
+    }
+
+
+    .hero-photo::before {
+
+      content: "";
+
+      position: absolute;
+
+      inset: -14px;
+
+      border:
+        1px solid
+        rgba(220,165,47,.25);
+
+      border-radius:
+        48% 51% 47% 52%;
+    }
+
+
+    .hero-photo img {
+
+      width: 100%;
+
+      height: 500px;
+
+      object-fit: cover;
+
+      display: block;
+
+      border-radius:
+        48% 50% 47% 51%;
+    }
+
+
+
+    /* ==================================================
+       共通セクション
+    ================================================== */
+
+    .section {
+
+      position: relative;
+
+      z-index: 2;
+
+      max-width: 1200px;
+
+      margin: auto;
+
+      padding:
+        75px 35px;
+    }
+
+
+    .section-title {
+
+      text-align: center;
+
+      margin-bottom: 45px;
+    }
+
+
+    .section-title .ornament {
+
+      color: var(--gold-light);
+
+      font-size: 22px;
+
+      letter-spacing: .5em;
+    }
+
+
+    .section-title h2 {
+
+      margin:
+        7px 0;
+
+      font-size: 34px;
+
+      font-weight: normal;
+
+      letter-spacing: .16em;
+    }
+
+
+    .section-title p {
+
+      margin: 0;
+
+      color: var(--gold-light);
+
+      opacity: .8;
+
+      font-family: Arial, sans-serif;
+
+      font-size: 10px;
+
+      letter-spacing: .28em;
+    }
+
+
+
+    /* ==================================================
+       炒飯カード
+    ================================================== */
+
+    .chahan-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(4,1fr);
+
+      gap: 22px;
+    }
+/* ==================================================
+   大きな炒飯写真・縦一列表示
+================================================== */
+
+.large-chahan-list {
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 60px;
+
+  margin-top: 50px;
+}
+
+
+.large-chahan-card {
+
+  width: min(700px, 90%);
+
+  text-align: center;
+}
+
+
+.large-chahan-card img {
+
+  width: 100%;
+
+  height: 400px;
+
+  object-fit: cover;
+
+  display: block;
+
+  border: 1px solid var(--gold);
+
+  padding: 8px;
+
+  background:
+    rgba(60, 0, 0, 0.3);
+
+  box-shadow:
+    0 20px 50px
+    rgba(0, 0, 0, 0.25);
+}
+
+
+.large-chahan-card h3 {
+
+  margin:
+    20px 0 8px;
+
+  font-size: 24px;
+
+  font-weight: normal;
+
+  letter-spacing: .15em;
+
+  color: var(--white);
+}
+
+
+.large-chahan-card p {
+
+  margin: 0;
+
+  font-size: 13px;
+
+  letter-spacing: .08em;
+
+  opacity: .75;
+}
+
+    .chahan-card {
+
+      background:
+        rgba(60,0,0,.28);
+
+      border:
+        1px solid
+        rgba(220,165,47,.65);
+
+      padding: 8px;
+
+      transition: .3s;
+    }
+
+
+    .chahan-card:hover {
+
+      transform:
+        translateY(-7px);
+
+      background:
+        rgba(60,0,0,.5);
+    }
+
+
+    .chahan-card img {
+
+      width: 100%;
+
+      aspect-ratio: 4 / 3;
+
+      object-fit: cover;
+
+      display: block;
+    }
+
+
+    .chahan-card h3 {
+
+      margin:
+        16px 0 6px;
+
+      text-align: center;
+
+      font-size: 17px;
+
+      font-weight: normal;
+
+      letter-spacing: .15em;
+    }
+
+
+    .chahan-card p {
+
+      margin: 0 0 8px;
+
+      text-align: center;
+
+      font-size: 11px;
+
+      opacity: .7;
+
+      letter-spacing: .05em;
+    }
+
+.large-chahan-card {
+  width: min(400px, 90%);
+}
+
+    /* ==================================================
+       紹介セクション
+    ================================================== */
+
+    .about {
+
+      border-top:
+        1px solid
+        rgba(220,165,47,.4);
+
+      border-bottom:
+        1px solid
+        rgba(220,165,47,.4);
+
+      display: grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap: 70px;
+
+      align-items: center;
+    }
+
+
+    .about-text h2 {
+
+      font-size: 34px;
+
+      font-weight: normal;
+
+      letter-spacing: .14em;
+
+      margin:
+        0 0 25px;
+    }
+
+
+    .about-text h2::after {
+
+      content: "";
+
+      display: block;
+
+      width: 110px;
+
+      height: 1px;
+
+      margin-top: 18px;
+
+      background: var(--gold);
+    }
+
+
+    .about-text p {
+
+      line-height: 2.2;
+
+      font-size: 14px;
+
+      opacity: .86;
+    }
+
+
+
+    /* ==================================================
+       フッター
+    ================================================== */
+
+    footer {
+
+      position: relative;
+
+      z-index: 2;
+
+      text-align: center;
+
+      padding:
+        55px 20px;
+
+      color: var(--gold-light);
+
+      font-size: 11px;
+
+      letter-spacing: .18em;
+    }
+
+
+
+    /* ==================================================
+       スマートフォン
+    ================================================== */
+
+    @media (max-width: 900px) {
+
+      nav {
+
+        display: none;
+      }
+
+
+      .menu-button {
+
+        display: block;
+      }
+
+
+      .hero {
+
+        grid-template-columns: 1fr;
+
+        padding-top: 40px;
+      }
+
+
+      .hero-text {
+
+        padding-left: 0;
+      }
+
+
+      .hero-photo img {
+
+        height: 420px;
+      }
+
+
+      .chahan-grid {
+
+        grid-template-columns:
+          repeat(2,1fr);
+      }
+
+
+      .about {
+
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+
+
+    @media (max-width: 550px) {
+
+      header {
+
+        padding:
+          20px;
+      }
+
+
+      .logo-title {
+
+        font-size: 21px;
+      }
+
+
+      .logo-mark {
+
+        width: 48px;
+        height: 48px;
+
+        font-size: 22px;
+      }
+
+
+      .hero {
+
+        padding:
+          35px 20px 70px;
+      }
+
+
+      .hero-title {
+
+        font-size: 43px;
+      }
+
+
+      .hero-title span:last-child {
+
+        margin-left: 30px;
+      }
+
+
+      .hero-photo img {
+
+        height: 320px;
+      }
+
+
+      .section {
+
+        padding:
+          60px 20px;
+      }
+
+
+      .chahan-grid {
+
+        grid-template-columns: 1fr;
+      }
+
+
+      .about-text h2 {
+
+        font-size: 27px;
+      }
+
+
+      .decoration {
+
+        width: 300px;
+
+        height: 210px;
+
+        opacity: .65;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+
+<body>
+
+
+  <!-- ==================================================
+       背景の雲・オウムガイ型渦巻き
+  ================================================== -->
+
+  <div class="decorations">
+
+
+    <!-- 左上 -->
+
+    <div class="decoration top-left">
+
+      <svg
+        viewBox="0 0 420 280"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+
+        <!-- 大きな雲 -->
+
+        <path
+          d="
+          M15 165
+
+          C45 160
+          50 125
+          82 120
+
+          C112 115
+          120 148
+          148 145
+
+          C180 141
+          170 102
+          201 91
+
+          C235 79
+          250 110
+          275 105
+
+          C305 99
+          294 68
+          322 58
+
+          C350 48
+          369 68
+          389 67
+          "
+        />
+
+
+        <!-- オウムガイのような渦 -->
+
+        <path
+          d="
+          M388 67
+
+          C360 60
+          334 78
+          339 105
+
+          C343 132
+          372 141
+          391 124
+
+          C409 108
+          399 82
+          380 82
+
+          C361 82
+          355 100
+          365 110
+
+          C374 119
+          387 114
+          389 103
+
+          C391 94
+          383 89
+          377 93
+          "
+        />
+
+
+        <!-- 下側へ流れる長い曲線 -->
+
+        <path
+          d="
+          M20 185
+
+          C72 180
+          90 202
+          129 199
+
+          C166 196
+          176 171
+          211 170
+          "
+        />
+
+      </svg>
+
+    </div>
+
+
+
+    <!-- 右上 -->
+
+    <div class="decoration top-right">
+
+      <svg
+        viewBox="0 0 420 280"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+
+        <path
+          d="
+          M15 165
+
+          C45 160
+          50 125
+          82 120
+
+          C112 115
+          120 148
+          148 145
+
+          C180 141
+          170 102
+          201 91
+
+          C235 79
+          250 110
+          275 105
+
+          C305 99
+          294 68
+          322 58
+
+          C350 48
+          369 68
+          389 67
+          "
+        />
+
+
+        <path
+          d="
+          M388 67
+
+          C360 60
+          334 78
+          339 105
+
+          C343 132
+          372 141
+          391 124
+
+          C409 108
+          399 82
+          380 82
+
+          C361 82
+          355 100
+          365 110
+
+          C374 119
+          387 114
+          389 103
+
+          C391 94
+          383 89
+          377 93
+          "
+        />
+
+
+        <path
+          d="
+          M20 185
+
+          C72 180
+          90 202
+          129 199
+
+          C166 196
+          176 171
+          211 170
+          "
+        />
+
+      </svg>
+
+    </div>
+
+
+
+    <!-- 左下 -->
+
+    <div class="decoration bottom-left">
+
+      <svg
+        viewBox="0 0 420 280"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+
+        <!-- 大きな渦巻き -->
+
+        <path
+          d="
+          M20 190
+
+          C65 188
+          90 160
+          89 132
+
+          C88 101
+          57 91
+          40 111
+
+          C22 132
+          34 159
+          57 159
+
+          C79 159
+          88 138
+          77 125
+
+          C68 114
+          52 119
+          53 133
+
+          C54 143
+          65 145
+          68 137
+          "
+        />
+
+
+        <!-- 雲へ続く流線 -->
+
+        <path
+          d="
+          M20 205
+
+          C65 220
+          111 212
+          137 188
+
+          C163 164
+          153 134
+          179 119
+
+          C205 104
+          230 119
+          247 105
+          "
+        />
+
+
+        <!-- 小さな渦 -->
+
+        <path
+          d="
+          M250 105
+
+          C271 89
+          295 99
+          299 119
+
+          C303 140
+          280 151
+          264 140
+
+          C250 130
+          256 111
+          271 109
+
+          C284 107
+          290 120
+          283 128
+
+          C278 134
+          268 131
+          269 123
+          "
+        />
+
+      </svg>
+
+    </div>
+
+
+
+    <!-- 右下 -->
+
+    <div class="decoration bottom-right">
+
+      <svg
+        viewBox="0 0 420 280"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+
+        <path
+          d="
+          M20 190
+
+          C65 188
+          90 160
+          89 132
+
+          C88 101
+          57 91
+          40 111
+
+          C22 132
+          34 159
+          57 159
+
+          C79 159
+          88 138
+          77 125
+
+          C68 114
+          52 119
+          53 133
+
+          C54 143
+          65 145
+          68 137
+          "
+        />
+
+
+        <path
+          d="
+          M20 205
+
+          C65 220
+          111 212
+          137 188
+
+          C163 164
+          153 134
+          179 119
+
+          C205 104
+          230 119
+          247 105
+          "
+        />
+
+
+        <path
+          d="
+          M250 105
+
+          C271 89
+          295 99
+          299 119
+
+          C303 140
+          280 151
+          264 140
+
+          C250 130
+          256 111
+          271 109
+
+          C284 107
+          290 120
+          283 128
+
+          C278 134
+          268 131
+          269 123
+          "
+        />
+
+      </svg>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- ==================================================
+       ヘッダー
+  ================================================== -->
+
+  <header>
+        <h1>
+          超愛🍤炒飯☆☆☆町中華
+        </h1>
+<br>
+
+  </header>
+    <nav>
+
+      <a href="#home">
+        HOME
+      </a>
+
+      <a href="#rank">
+        炒飯順位
+      </a>
+
+      <a href="#zukan">
+        圏外炒飯
+      </a>
+
+      <a href="#other">
+        その他
+      </a>
+
+    </nav>
+
+
+    <button
+      class="menu-button"
+      aria-label="メニュー"
+    >
+      ☰
+    </button>
+<!-- 
+  </header> -->
+
+
+
+  <!-- ==================================================
+       メイン
+  ================================================== -->
+
+  <main id="home">
+
+
+    <!-- ==================================================
+         ヒーロー
+    ================================================== -->
+
+    <section class="hero">
+
+
+      <div class="hero-text">
+
+        <h2 class="hero-title">
+
+          <span>
+            炒飯は、
+          </span>
+
+          <span>
+            奥が深い。
+          </span>
+
+        </h2>
+
+
+      我喜欢吃炒饭
+
+      <div class="hero-photo">
+
+        <img
+          src="cha/8.jpg"
+          alt="美味しそうな炒飯"
+        >
+
+      </div>
+
+
+    </section>
+
+
+<!-- ==================================================
+     炒飯順位
+================================================== -->
+
+    <section
+      class="section"
+      id="rank"
+    >
+
+
+      <div class="section-title">
+
+        <div class="ornament">
+          〜　❈　〜
+        </div>
+
+        <h2>
+          炒飯順位
+        </h2>
+
+      </div>
+
+<div class="large-chahan-list">
+
+
+  <article class="large-chahan-card">
+
+    <img
+      src="cha/1.jpg"
+      alt="1"
+    >
+
+    <h3>
+      1位<br>
+      元祖 十八番(伊勢佐木長者町駅）
+    </h3>
+
+    <p>
+    五目チャーハン
+    </p>
+
+  </article>
+
+
+
+  <article class="large-chahan-card">
+
+    <img
+      src="cha/2.jpg"
+      alt="2"
+    >
+
+    <h3>
+      2位<br>      
+      登龍(新馬場駅)
+    </h3>
+
+    <p>
+      海老チャーハン
+    </p>
+
+  </article>
+
+
+
+  <article class="large-chahan-card">
+
+    <img
+      src="cha/3.HEIC"
+      alt="3"
+    >
+
+    <h3>
+      3位<br>
+     中華料理 鶴廣(横浜駅)
+    </h3>
+
+    <p>
+      エビチャーハン
+    </p>
+
+  </article>
+
+
+
+  <article class="large-chahan-card">
+
+    <img
+      src="cha/4.jpg"
+      alt="4"
+    >
+
+    <h3>
+      4位<br>
+      大公楼(旗の台駅)
+    </h3>
+
+    <p>
+      五目チャーハン
+    </p>
+
+  </article>
+
+
+
+  <article class="large-chahan-card">
+
+    <img
+      src="cha/5.png"
+      alt="5"
+    >
+
+    <h3>
+      5位<br>
+     中華料理  秀鳳(武蔵小杉駅)
+    </h3>
+
+    <p>
+      麻婆チャーハン
+    </p>
+
+  </article>
+
+
+  <article class="large-chahan-card">
+
+    <img
+      src="cha/6.png"
+      alt="6"
+    >
+
+    <h3>
+      6位<br>
+    中国料理 龍(洗足池駅)
+    </h3>
+
+    <p>
+      チャーハン
+    </p>
+
+  </article>
+  
+
+
+  <article class="large-chahan-card">
+
+    <img
+      src="cha/7.jpg"
+      alt="7"
+    >
+
+    <h3>
+      7位<br>
+     中華料理 菜来軒(船橋競馬場駅)
+    </h3>
+
+    <p>
+      五目炒飯
+    </p>
+
+  </article>
+
+  
+
+
+  <article class="large-chahan-card">
+
+    <img
+      src="cha/8.jpg"
+      alt="8"
+    >
+
+    <h3>
+      8位<br>
+     山陽(日吉本町駅)
+    </h3>
+
+    <p>
+      チャーハン
+    </p>
+
+  </article>
+
+
+  
+
+
+  <article class="large-chahan-card">
+
+    <img
+      src="c"
+      alt="画像なし"
+    >
+
+    <h3>
+      9位<br>
+     平和軒(西小山駅)
+    </h3>
+
+    <p>
+      炒飯
+    </p>
+
+  </article>
+
+  
+
+
+  <article class="large-chahan-card">
+
+    <img
+      src="cha/10.jpg"
+      alt="10"
+    >
+
+    <h3>
+      10位<br>
+     青龍(生麦駅)
+    </h3>
+
+    <p>
+      五目チャーハン
+    </p>
+
+  </article>
+
+ 
+</div>
+
+    <!-- ==================================================
+         圏外炒飯
+    ================================================== -->
+
+    <section class="section" id="zukan"  >
+
+
+      <div class="section-title">
+
+        <div class="ornament">
+          〜　❈　〜
+        </div>
+
+        <h2>
+          圏外炒飯
+        </h2>
+
+        <p>
+          OUT-OF-CHAHAN
+        </p>
+
+      </div>
+
+
+
+      <div class="chahan-grid">
+
+
+        <!-- 五目炒飯 -->
+
+        <article class="chahan-card">
+
+          <img src="cha/11.jpg" alt="11" >
+
+          <h3>
+           餃子会館 ふく龍(伊勢佐木長者町駅)
+          </h3>
+
+          <p>
+            五目炒飯
+          </p>
+
+        </article>
+
+        <!-- 黒炒飯 -->
+
+        <article class="chahan-card">
+
+          <img src="cha/12.jpg" alt="12" >
+
+          <h3>
+          くいしんぼ<br>(静岡県 磐田駅)
+          </h3>
+
+          <p>
+            チャーハン
+          </p>
+
+        </article>
+
+
+
+        <!-- カニ炒飯 -->
+
+        <article class="chahan-card">
+
+          <img src="cha/13.jpg" alt="13" >
+
+          <h3>
+           恩豊園 (小机駅)
+          </h3>
+
+          <p>
+            炒飯
+          </p>
+
+        </article>
+
+
+
+        <!-- 高菜炒飯 -->
+
+        <article class="chahan-card">
+
+          <img src="cha/15.heic" alt="14" >
+
+          <h3>
+            中華料理 紅燈記(神保町)
+          </h3>
+
+          <p>
+            チャーハン
+          </p>
+        </article>
+
+        <article class="chahan-card">
+
+          <img src="cha/1c" alt="15" >
+
+          <h3>
+            準備中
+          </h3>
+
+          <p>
+            ○○炒飯
+          </p>
+        </article>
+      </div>
+            </div>
+    </section>
+
+    <section>
+          <span>
+            　　　　　　　　　　　　　　　　　　　　　　炒　　炒　　炒　　　　チャ　　チャ
+          </span>
+
+    </section>
+
+    <section class="section" id="other"
+    >
+      <div
+        style="
+          text-align:center;
+          max-width:700px;
+          margin:auto;
+          line-height:2.2;
+          opacity:.85;
+        "
+      >
+
+        <p>
+          美味しい海老炒飯を見つけた人、<br>
+          ご連絡ください。
+        </p>
+
+      </div>
+
+            <div
+        style="
+          text-align:center;
+          margin-top:35px;
+        "
+      >
+        <a
+          class="gold-button"
+          href="gallery.php"
+        >
+          ギャラリーへ戻る　→
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ==================================================
+       フッター
+  ================================================== -->
+
+  <footer>
+
+    © 2026 Kameyama Tamao. All Rights Reserved.
+
+  </footer>
+
+
+
+</body>
+
+</html>

@@ -63,6 +63,7 @@ input {
     <br>
     <br>
         <h1><a href="gallery1.html">ネコ</a></h1>
+        <h1><a href="gallery3.html">炒飯</a></h1>
     <br>
         <h3><a href="gallery2.html">その他➀</a> </h3>
         <h3>その他➁（準備中）</a> </h3>
