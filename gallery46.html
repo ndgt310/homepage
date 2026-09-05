@@ -1,0 +1,1565 @@
+```html
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>WONDER</title>
+
+
+  <style>
+
+
+    /* ==================================================
+       基本設定
+    ================================================== */
+
+    :root {
+
+      --black: #090909;
+      --white: #eeeeea;
+
+      /* 差し色 */
+      --mint: #a8e6cf;
+      --mint-dark: #78c9ae;
+
+    }
+
+
+    * {
+      box-sizing: border-box;
+    }
+
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+
+    body {
+
+      margin: 0;
+
+      background:
+        radial-gradient(
+          circle at 50% 50%,
+          #1a1a1a 0%,
+          #090909 65%
+        );
+
+      color:
+        var(--white);
+
+      font-family:
+        "Hiragino Kaku Gothic ProN",
+        "Yu Gothic",
+        sans-serif;
+
+      overflow-x: hidden;
+
+    }
+
+
+
+    /* ==================================================
+       背景の質感
+    ================================================== */
+
+    body::before {
+
+      content: "";
+
+      position: fixed;
+
+      inset: 0;
+
+      pointer-events: none;
+
+      opacity: .035;
+
+      background-image:
+        radial-gradient(
+          white .6px,
+          transparent .6px
+        );
+
+      background-size: 6px 6px;
+
+      z-index: 0;
+
+    }
+
+
+
+    /* ==================================================
+       不思議な背景の円
+    ================================================== */
+
+    .world {
+
+      position: fixed;
+
+      inset: 0;
+
+      overflow: hidden;
+
+      pointer-events: none;
+
+      z-index: 0;
+
+    }
+
+
+    .circle {
+
+      position: absolute;
+
+      border-radius: 50%;
+
+      border:
+        1px solid
+        rgba(255,255,255,.09);
+
+    }
+
+
+    .circle.one {
+
+      width: 600px;
+
+      height: 600px;
+
+      top: -280px;
+
+      right: -150px;
+
+    }
+
+
+    .circle.two {
+
+      width: 430px;
+
+      height: 430px;
+
+      bottom: -220px;
+
+      left: -150px;
+
+      border-color:
+        rgba(168,230,207,.13);
+
+    }
+
+
+    .circle.three {
+
+      width: 180px;
+
+      height: 180px;
+
+      top: 35%;
+
+      left: 7%;
+
+      border-color:
+        rgba(255,255,255,.13);
+
+      animation:
+        float 8s ease-in-out infinite;
+
+    }
+
+
+    .circle.four {
+
+      width: 80px;
+
+      height: 80px;
+
+      top: 18%;
+
+      right: 18%;
+
+      border-color:
+        rgba(168,230,207,.35);
+
+      animation:
+        float 6s ease-in-out infinite reverse;
+
+    }
+
+
+
+    /* ==================================================
+       円の中の円
+    ================================================== */
+
+    .circle.four::before {
+
+      content: "";
+
+      position: absolute;
+
+      inset: 13px;
+
+      border:
+        1px solid
+        var(--mint);
+
+      border-radius: 50%;
+
+      opacity: .7;
+
+    }
+
+
+
+    /* ==================================================
+       浮遊する小さな点
+    ================================================== */
+
+    .dot {
+
+      position: absolute;
+
+      width: 5px;
+
+      height: 5px;
+
+      border-radius: 50%;
+
+      background:
+        var(--mint);
+
+      box-shadow:
+        0 0 15px
+        rgba(168,230,207,.7);
+
+    }
+
+
+    .dot.one {
+
+      left: 18%;
+
+      top: 25%;
+
+    }
+
+
+    .dot.two {
+
+      right: 11%;
+
+      top: 48%;
+
+      width: 3px;
+
+      height: 3px;
+
+    }
+
+
+    .dot.three {
+
+      left: 35%;
+
+      bottom: 17%;
+
+      width: 3px;
+
+      height: 3px;
+
+    }
+
+
+
+    /* ==================================================
+       浮遊アニメーション
+    ================================================== */
+
+    @keyframes float {
+
+      0%,
+      100% {
+
+        transform:
+          translateY(0)
+          rotate(0deg);
+
+      }
+
+      50% {
+
+        transform:
+          translateY(-18px)
+          rotate(8deg);
+
+      }
+
+    }
+
+
+
+    /* ==================================================
+       上部
+    ================================================== */
+
+    header {
+
+      position: relative;
+
+      z-index: 5;
+
+      height: 100px;
+
+      padding:
+        30px 45px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+    }
+
+
+    .logo {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
+
+    }
+
+
+    .logo-circle {
+
+      width: 32px;
+
+      height: 32px;
+
+      border:
+        1px solid
+        var(--mint);
+
+      border-radius: 50%;
+
+      position: relative;
+
+    }
+
+
+    .logo-circle::after {
+
+      content: "";
+
+      position: absolute;
+
+      width: 8px;
+
+      height: 8px;
+
+      border-radius: 50%;
+
+      background:
+        var(--mint);
+
+      left: 50%;
+
+      top: 50%;
+
+      transform:
+        translate(-50%,-50%);
+
+    }
+
+
+    .logo span {
+
+      font-size: 11px;
+
+      letter-spacing: .25em;
+
+      opacity: .75;
+
+    }
+
+
+    .menu {
+
+      font-size: 20px;
+
+      opacity: .6;
+
+    }
+
+
+
+    /* ==================================================
+       メインタイトル
+    ================================================== */
+
+    .hero {
+
+      position: relative;
+
+      z-index: 2;
+
+      min-height:
+        390px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      text-align: center;
+
+    }
+
+
+    .hero-inner {
+
+      position: relative;
+
+    }
+
+
+    .hero h1 {
+
+      margin: 0;
+
+      font-family:
+        "Times New Roman",
+        serif;
+
+      font-size:
+        clamp(55px, 9vw, 110px);
+
+      font-weight: normal;
+
+      letter-spacing: .08em;
+
+      line-height: 1;
+
+    }
+
+
+    .hero h1 span {
+
+      color:
+        var(--mint);
+
+    }
+
+
+    .hero p {
+
+      margin-top: 25px;
+
+      font-size: 10px;
+
+      letter-spacing: .35em;
+
+      opacity: .45;
+
+    }
+
+
+    /* タイトル横の小さな円 */
+
+    .hero-orbit {
+
+      position: absolute;
+
+      width: 170px;
+
+      height: 170px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.13);
+
+      border-radius: 50%;
+
+      top: -65px;
+
+      left: -110px;
+
+      animation:
+        spin 20s linear infinite;
+
+    }
+
+
+    .hero-orbit::after {
+
+      content: "";
+
+      position: absolute;
+
+      width: 8px;
+
+      height: 8px;
+
+      border-radius: 50%;
+
+      background:
+        var(--mint);
+
+      top: 12px;
+
+      left: 50%;
+
+    }
+
+
+    @keyframes spin {
+
+      to {
+
+        transform:
+          rotate(360deg);
+
+      }
+
+    }
+
+
+
+    /* ==================================================
+       ギャラリータイトル
+    ================================================== */
+
+    .gallery-title {
+
+      position: relative;
+
+      z-index: 3;
+
+      padding:
+        0 45px 25px;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+    }
+
+
+    .gallery-title h2 {
+
+      margin: 0;
+
+      font-size: 12px;
+
+      font-weight: normal;
+
+      letter-spacing: .3em;
+
+      opacity: .7;
+
+    }
+
+
+    .gallery-title span {
+
+      font-size: 9px;
+
+      opacity: .3;
+
+      letter-spacing: .2em;
+
+    }
+
+
+
+    /* ==================================================
+       写真を流す場所
+    ================================================== */
+
+    .gallery-window {
+
+      width: 100%;
+
+      overflow: hidden;
+
+      position: relative;
+
+      z-index: 3;
+
+      padding:
+        40px 0 65px;
+
+    }
+
+
+    .gallery {
+
+      display: flex;
+
+      width: max-content;
+
+      gap: 45px;
+
+      animation:
+        slide 55s linear infinite;
+
+    }
+
+
+
+    /* ==================================================
+       写真カード
+    ================================================== */
+
+    .photo {
+
+      position: relative;
+
+      width: 300px;
+
+      height: 390px;
+
+      flex-shrink: 0;
+
+      transition:
+        transform .6s ease;
+
+    }
+
+
+    /* 写真の周囲の円 */
+
+    .photo::before {
+
+      content: "";
+
+      position: absolute;
+
+      width: 60px;
+
+      height: 60px;
+
+      border:
+        1px solid
+        rgba(168,230,207,.35);
+
+      border-radius: 50%;
+
+      top: -25px;
+
+      right: -25px;
+
+      z-index: -1;
+
+    }
+
+
+    .photo img {
+
+      width: 100%;
+
+      height: 100%;
+
+      object-fit: cover;
+
+      display: block;
+
+      filter:
+        grayscale(100%);
+
+      transition:
+        filter .8s,
+        transform .8s;
+
+    }
+
+
+    /* 写真を少しずつ違う角度に */
+
+    .photo:nth-child(3n+1) {
+
+      transform:
+        rotate(-1.5deg);
+
+    }
+
+
+    .photo:nth-child(3n+2) {
+
+      transform:
+        rotate(.8deg);
+
+    }
+
+
+    .photo:nth-child(3n) {
+
+      transform:
+        rotate(1.8deg);
+
+    }
+
+
+    .photo:hover {
+
+      transform:
+        translateY(-15px)
+        rotate(0deg);
+
+    }
+
+
+    .photo:hover img {
+
+      filter:
+        grayscale(25%);
+
+      transform:
+        scale(1.025);
+
+    }
+
+
+
+    /* ==================================================
+       写真番号
+    ================================================== */
+
+    .number {
+
+      position: absolute;
+
+      left: 12px;
+
+      bottom: -25px;
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size: 9px;
+
+      letter-spacing: .25em;
+
+      opacity: .4;
+
+    }
+
+
+    .number::before {
+
+      content: "";
+
+      display: inline-block;
+
+      width: 5px;
+
+      height: 5px;
+
+      border-radius: 50%;
+
+      background:
+        var(--mint);
+
+      margin-right: 7px;
+
+    }
+
+
+
+    /* ==================================================
+       写真上の円
+    ================================================== */
+
+    .photo-orbit {
+
+      position: absolute;
+
+      width: 45px;
+
+      height: 45px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.35);
+
+      border-radius: 50%;
+
+      left: -22px;
+
+      bottom: 25px;
+
+      transition:
+        transform .6s;
+
+    }
+
+
+    .photo:hover .photo-orbit {
+
+      transform:
+        rotate(180deg);
+
+    }
+
+
+    .photo-orbit::after {
+
+      content: "";
+
+      position: absolute;
+
+      width: 5px;
+
+      height: 5px;
+
+      border-radius: 50%;
+
+      background:
+        var(--mint);
+
+      right: 3px;
+
+      top: 50%;
+
+    }
+
+
+
+    /* ==================================================
+       横移動
+    ================================================== */
+
+    @keyframes slide {
+
+      from {
+
+        transform:
+          translateX(0);
+
+      }
+
+      to {
+
+        transform:
+          translateX(-50%);
+
+      }
+
+    }
+
+
+
+    /* ==================================================
+       下部
+    ================================================== */
+
+    .bottom {
+
+      position: relative;
+
+      z-index: 3;
+
+      min-height: 220px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      text-align: center;
+
+    }
+
+
+    .bottom-circle {
+
+      width: 120px;
+
+      height: 120px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.2);
+
+      border-radius: 50%;
+
+      position: relative;
+
+      animation:
+        float 7s ease-in-out infinite;
+
+    }
+
+
+    .bottom-circle::before {
+
+      content: "";
+
+      position: absolute;
+
+      inset: 20px;
+
+      border:
+        1px solid
+        var(--mint);
+
+      border-radius: 50%;
+
+      opacity: .6;
+
+    }
+
+
+    .bottom-circle::after {
+
+      content: "○";
+
+      position: absolute;
+
+      left: 50%;
+
+      top: 50%;
+
+      transform:
+        translate(-50%,-50%);
+
+      font-size: 20px;
+
+      color:
+        var(--mint);
+
+    }
+
+
+
+    /* ==================================================
+       フッター
+    ================================================== */
+
+    footer {
+
+      position: relative;
+
+      z-index: 3;
+
+      text-align: center;
+
+      padding:
+        30px;
+
+      font-size: 8px;
+
+      letter-spacing: .35em;
+
+      opacity: .25;
+
+    }
+
+
+
+    /* ==================================================
+       スマートフォン
+    ================================================== */
+
+    @media (max-width: 700px) {
+
+
+      header {
+
+        height: 80px;
+
+        padding:
+          20px;
+
+      }
+
+
+      .hero {
+
+        min-height:
+          330px;
+
+      }
+
+
+      .hero h1 {
+
+        font-size: 55px;
+
+      }
+
+
+      .hero-orbit {
+
+        width: 120px;
+
+        height: 120px;
+
+        left: -75px;
+
+        top: -45px;
+
+      }
+
+
+      .gallery-title {
+
+        padding:
+          0 20px 20px;
+
+      }
+
+
+      .gallery-title span {
+
+        display: none;
+
+      }
+
+
+      .gallery-window {
+
+        padding-top: 35px;
+
+      }
+
+
+      .gallery {
+
+        gap: 35px;
+
+        animation-duration:
+          45s;
+
+      }
+
+
+      .photo {
+
+        width: 245px;
+
+        height: 330px;
+
+      }
+
+
+      .circle.one {
+
+        width: 400px;
+
+        height: 400px;
+
+      }
+
+
+      .circle.three {
+
+        width: 120px;
+
+        height: 120px;
+
+      }
+
+    }
+
+
+  </style>
+
+</head>
+
+
+
+<body>
+
+
+  <!-- ==================================================
+       背景
+  ================================================== -->
+
+  <div class="world">
+
+
+    <div class="circle one"></div>
+
+    <div class="circle two"></div>
+
+    <div class="circle three"></div>
+
+    <div class="circle four"></div>
+
+
+    <div class="dot one"></div>
+
+    <div class="dot two"></div>
+
+    <div class="dot three"></div>
+
+
+  </div>
+
+
+
+  <!-- ==================================================
+       ヘッダー
+  ================================================== -->
+
+  <header>
+
+
+    <div class="logo">
+
+      <div class="logo-circle"></div>
+
+      <span>
+        WONDER
+      </span>
+
+    </div>
+
+
+    <div class="menu">
+      ○
+    </div>
+
+
+  </header>
+
+
+
+  <!-- ==================================================
+       ヒーロー
+  ================================================== -->
+
+  <section class="hero">
+
+
+    <div class="hero-inner">
+
+
+      <div class="hero-orbit"></div>
+
+
+      <h1>
+
+        <span>不思議</span>な<br>
+
+        写真たち。
+
+      </h1>
+
+
+      <p>
+        SOMETHING STRANGE
+      </p>
+
+
+    </div>
+
+
+  </section>
+
+
+
+  <!-- ==================================================
+       ギャラリータイトル
+  ================================================== -->
+
+  <div class="gallery-title">
+
+
+    <h2>
+      PHOTO COLLECTION
+    </h2>
+
+
+    <span>
+      001 — 010
+    </span>
+
+
+  </div>
+
+
+
+  <!-- ==================================================
+       ギャラリー
+  ================================================== -->
+
+  <section class="gallery-window">
+
+
+    <div class="gallery">
+
+
+
+      <!-- ==========================
+           PHOTO 01
+      =========================== -->
+
+      <article class="photo">
+
+        <img
+          src="images/photo01.jpg"
+          alt="写真01"
+        >
+
+        <div class="photo-orbit"></div>
+
+        <span class="number">
+          01
+        </span>
+
+      </article>
+
+
+
+      <!-- ==========================
+           PHOTO 02
+      =========================== -->
+
+      <article class="photo">
+
+        <img
+          src="images/photo02.jpg"
+          alt="写真02"
+        >
+
+        <div class="photo-orbit"></div>
+
+        <span class="number">
+          02
+        </span>
+
+      </article>
+
+
+
+      <!-- ==========================
+           PHOTO 03
+      =========================== -->
+
+      <article class="photo">
+
+        <img
+          src="images/photo03.jpg"
+          alt="写真03"
+        >
+
+        <div class="photo-orbit"></div>
+
+        <span class="number">
+          03
+        </span>
+
+      </article>
+
+
+
+      <!-- ==========================
+           PHOTO 04
+      =========================== -->
+
+      <article class="photo">
+
+        <img
+          src="images/photo04.jpg"
+          alt="写真04"
+        >
+
+        <div class="photo-orbit"></div>
+
+        <span class="number">
+          04
+        </span>
+
+      </article>
+
+
+
+      <!-- ==========================
+           PHOTO 05
+      =========================== -->
+
+      <article class="photo">
+
+        <img
+          src="images/photo05.jpg"
+          alt="写真05"
+        >
+
+        <div class="photo-orbit"></div>
+
+        <span class="number">
+          05
+        </span>
+
+      </article>
+
+
+
+      <!-- ==========================
+           PHOTO 06
+      =========================== -->
+
+      <article class="photo">
+
+        <img
+          src="images/photo06.jpg"
+          alt="写真06"
+        >
+
+        <div class="photo-orbit"></div>
+
+        <span class="number">
+          06
+        </span>
+
+      </article>
+
+
+
+      <!-- ==========================
+           PHOTO 07
+      =========================== -->
+
+      <article class="photo">
+
+        <img
+          src="images/photo07.jpg"
+          alt="写真07"
+        >
+
+        <div class="photo-orbit"></div>
+
+        <span class="number">
+          07
+        </span>
+
+      </article>
+
+
+
+      <!-- ==========================
+           PHOTO 08
+      =========================== -->
+
+      <article class="photo">
+
+        <img
+          src="images/photo08.jpg"
+          alt="写真08"
+        >
+
+        <div class="photo-orbit"></div>
+
+        <span class="number">
+          08
+        </span>
+
+      </article>
+
+
+
+      <!-- ==========================
+           PHOTO 09
+      =========================== -->
+
+      <article class="photo">
+
+        <img
+          src="images/photo09.jpg"
+          alt="写真09"
+        >
+
+        <div class="photo-orbit"></div>
+
+        <span class="number">
+          09
+        </span>
+
+      </article>
+
+
+
+      <!-- ==========================
+           PHOTO 10
+      =========================== -->
+
+      <article class="photo">
+
+        <img
+          src="images/photo10.jpg"
+          alt="写真10"
+        >
+
+        <div class="photo-orbit"></div>
+
+        <span class="number">
+          10
+        </span>
+
+      </article>
+
+
+
+      <!-- ==================================================
+           複製
+           無限スクロール用
+      ================================================== -->
+
+
+      <article class="photo">
+
+        <img
+          src="images/photo01.jpg"
+          alt=""
+        >
+
+      </article>
+
+
+      <article class="photo">
+
+        <img
+          src="images/photo02.jpg"
+          alt=""
+        >
+
+      </article>
+
+
+      <article class="photo">
+
+        <img
+          src="images/photo03.jpg"
+          alt=""
+        >
+
+      </article>
+
+
+      <article class="photo">
+
+        <img
+          src="images/photo04.jpg"
+          alt=""
+        >
+
+      </article>
+
+
+      <article class="photo">
+
+        <img
+          src="images/photo05.jpg"
+          alt=""
+        >
+
+      </article>
+
+
+      <article class="photo">
+
+        <img
+          src="images/photo06.jpg"
+          alt=""
+        >
+
+      </article>
+
+
+      <article class="photo">
+
+        <img
+          src="images/photo07.jpg"
+          alt=""
+        >
+
+      </article>
+
+
+      <article class="photo">
+
+        <img
+          src="images/photo08.jpg"
+          alt=""
+        >
+
+      </article>
+
+
+      <article class="photo">
+
+        <img
+          src="images/photo09.jpg"
+          alt=""
+        >
+
+      </article>
+
+
+      <article class="photo">
+
+        <img
+          src="images/photo10.jpg"
+          alt=""
+        >
+
+      </article>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ==================================================
+       下部
+  ================================================== -->
+
+  <section class="bottom">
+
+
+    <div class="bottom-circle"></div>
+
+
+  </section>
+
+
+
+  <!-- ==================================================
+       フッター
+  ================================================== -->
+
+  <footer>
+
+    © WONDER
+
+  </footer>
+
+
+
+</body>
+
+</html>
+```

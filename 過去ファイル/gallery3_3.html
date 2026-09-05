@@ -1,0 +1,1661 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>gallery2</title>
+
+<style>
+
+/* =========================================================
+   全体
+========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,.7) 0 2px, transparent 3px),
+    radial-gradient(circle at 80% 70%, rgba(255,255,255,.5) 0 2px, transparent 3px),
+    #f4dce2;
+  background-size: 35px 35px, 45px 45px, auto;
+  color: #4b3038;
+  font-family:
+    "MS PGothic",
+    "ＭＳ Ｐゴシック",
+    Arial,
+    sans-serif;
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   メインページ
+========================================================= */
+
+.wrapper {
+  width: 820px;
+  max-width: calc(100% - 24px);
+  margin: 25px auto 50px;
+  background: #fffafc;
+  border: 3px solid #8d5265;
+  box-shadow:
+    4px 4px 0 #d29aaa,
+    8px 8px 0 rgba(126, 68, 87, .15);
+}
+
+
+/* =========================================================
+   ヘッダー
+========================================================= */
+
+header {
+  background:
+    linear-gradient(
+      to bottom,
+      #ffeff5 0%,
+      #f8c7d7 45%,
+      #e998b4 50%,
+      #f5c0d0 100%
+    );
+  border-bottom: 3px solid #8d5265;
+  padding: 17px 20px 13px;
+  text-align: center;
+}
+
+.site-title {
+  margin: 0;
+  color: #7b2948;
+  font-family:
+    "MS PGothic",
+    "ＭＳ Ｐゴシック",
+    sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-shadow:
+    1px 1px 0 #fff,
+    2px 2px 0 #e8a6ba;
+}
+
+.site-subtitle {
+  margin-top: 5px;
+  color: #703c4e;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+.header-star {
+  color: #fff;
+  font-size: 16px;
+  text-shadow: 1px 1px 2px #9c5069;
+}
+
+
+/* =========================================================
+   点滅
+========================================================= */
+
+.blink {
+  animation: blink 1s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+
+/* =========================================================
+   MARQUEE風
+========================================================= */
+
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  background: #fff;
+  border-bottom: 1px dashed #b87388;
+  color: #b13f67;
+  font-size: 12px;
+  padding: 5px 0;
+}
+
+.marquee-inner {
+  display: inline-block;
+  padding-left: 100%;
+  animation: marquee 16s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+
+/* =========================================================
+   ナビゲーション
+========================================================= */
+
+.nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 9px 8px;
+  background: #f8e8ed;
+  border-bottom: 1px solid #b77b8c;
+}
+
+.nav a {
+  display: inline-block;
+  min-width: 82px;
+  padding: 6px 10px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #fff,
+      #f5c4d2 48%,
+      #d889a3 50%,
+      #efb1c2
+    );
+
+  border: 2px outset #f9e2e8;
+  color: #713047;
+  text-decoration: none;
+  text-align: center;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.nav a:hover {
+  background:
+    linear-gradient(
+      to bottom,
+      #ffeef4,
+      #ef9fb8 48%,
+      #bd6684 50%,
+      #e99ab1
+    );
+  color: #fff;
+}
+
+.nav a:active {
+  border-style: inset;
+}
+
+
+/* =========================================================
+   コンテンツ
+========================================================= */
+
+.gallery {
+  padding: 22px 28px 35px;
+}
+
+.section-title {
+  margin: 0;
+  padding: 9px 12px;
+
+  background:
+    linear-gradient(
+      to right,
+      #8b405a,
+      #c76c87,
+      #e7a5b7,
+      #c76c87,
+      #8b405a
+    );
+
+  border-top: 2px solid #fff;
+  border-bottom: 2px solid #733347;
+
+  color: #fff;
+  font-size: 18px;
+  text-align: center;
+  text-shadow: 1px 1px 0 #713047;
+}
+
+.section-subtitle {
+  margin: 9px 0 20px;
+  color: #7d4c5a;
+  font-size: 11px;
+  text-align: center;
+}
+
+
+/* =========================================================
+   ギャラリー
+   ★ 一列表示
+========================================================= */
+
+.gallery-grid {
+  /* display: ; */
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+}
+
+
+/* =========================================================
+   写真カード
+========================================================= */
+
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 610px;
+
+  padding: 12px 12px 10px;
+
+  background: #fff;
+  border: 1px solid #b67a8b;
+
+  box-shadow:
+    3px 3px 0 #e0a6b5;
+
+  opacity: 0;
+  transform: translateY(15px);
+
+  transition:
+    opacity .5s ease,
+    transform .5s ease;
+}
+
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* =========================================================
+   年代ラベル
+========================================================= */
+
+.card-year-label {
+  position: absolute;
+  top: -10px;
+  left: 12px;
+
+  padding: 2px 8px;
+
+  background: #a83e61;
+  border: 1px solid #713047;
+
+  color: #fff;
+  font-size: 11px;
+  font-weight: bold;
+
+  box-shadow: 2px 2px 0 #d59aaa;
+}
+
+
+/* =========================================================
+   写真
+   ★ ここでサイズを調整
+========================================================= */
+
+.card-image-wrapper {
+  width: 100%;
+  text-align: center;
+  background: #f8eef1;
+  padding: 7px;
+  border: 1px solid #d6a9b5;
+}
+
+.card-image-wrapper img {
+  display: block;
+
+  width: auto;
+  max-width: 520px;
+  max-height: 520px;
+
+  height: auto;
+
+  margin: 0 auto;
+
+  border: 1px solid #8f5b6c;
+
+  object-fit: contain;
+
+  background: #fff;
+}
+
+
+/* =========================================================
+   写真下の文字
+========================================================= */
+
+.card-content {
+  padding: 7px 4px 2px;
+  text-align: center;
+}
+
+.card-title {
+  margin: 0;
+  color: #843651;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.card-text {
+  margin: 4px 0 0;
+  color: #76505c;
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   途中の平成っぽい案内
+========================================================= */
+
+.old-notice {
+  margin: 22px auto;
+  padding: 9px 12px;
+
+  width: 90%;
+
+  background: #fff5f7;
+  border: 1px dashed #a85a72;
+
+  color: #754052;
+  text-align: center;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.old-notice strong {
+  color: #bd315d;
+}
+
+
+/* =========================================================
+   キリ番・カウンター
+========================================================= */
+
+.counter-area {
+  margin: 25px auto 10px;
+  padding: 13px 10px;
+
+  width: 90%;
+
+  background: #f9e5eb;
+  border: 2px solid #b96f84;
+
+  text-align: center;
+}
+
+.counter-title {
+  color: #8e2f50;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.counter-number {
+  display: inline-block;
+
+  margin: 6px 0;
+
+  padding: 4px 12px;
+
+  background: #222;
+  border: 2px inset #888;
+
+  color: #49ff5a;
+
+  font-family: "Courier New", monospace;
+  font-size: 17px;
+  letter-spacing: 2px;
+}
+
+.counter-message {
+  color: #7a4655;
+  font-size: 10px;
+}
+
+
+/* =========================================================
+   更新履歴
+========================================================= */
+
+.history {
+  margin-top: 30px;
+
+  border: 1px solid #b77a8c;
+  background: #fff;
+}
+
+.history-title {
+  padding: 6px 10px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #e9b0c0,
+      #c66f89
+    );
+
+  border-bottom: 1px solid #955066;
+
+  color: #fff;
+  font-weight: bold;
+}
+
+.history-body {
+  padding: 10px 12px;
+  line-height: 1.8;
+  font-size: 11px;
+}
+
+.history-date {
+  color: #a23859;
+  font-weight: bold;
+}
+
+
+/* =========================================================
+   管理人メモ
+========================================================= */
+
+.memo {
+  margin-top: 14px;
+
+  padding: 11px;
+
+  background: #fff8d9;
+
+  border: 1px solid #c6aa62;
+
+  color: #69592e;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.memo-title {
+  color: #956f19;
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+
+
+/* =========================================================
+   フッター周辺
+========================================================= */
+
+.footer-info {
+  margin-top: 30px;
+  padding: 14px 10px;
+
+  background: #f7e4e9;
+
+  border-top: 2px solid #b46d82;
+  border-bottom: 2px solid #b46d82;
+
+  text-align: center;
+
+  color: #79505c;
+  font-size: 10px;
+  line-height: 1.9;
+}
+
+.footer-links {
+  margin-top: 7px;
+}
+
+.footer-links a {
+  color: #8d3151;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.footer-small {
+  margin-top: 10px;
+  color: #98727d;
+  font-size: 9px;
+}
+
+
+/* =========================================================
+   TOPへ
+========================================================= */
+
+.back-top {
+  display: block;
+
+  width: 110px;
+
+  margin: 18px auto 0;
+
+  padding: 6px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #fff,
+      #efb4c4 48%,
+      #cc7691 50%,
+      #e4a1b3
+    );
+
+  border: 2px outset #f7dce4;
+
+  color: #713047;
+  text-align: center;
+  text-decoration: none;
+
+  font-weight: bold;
+  font-size: 11px;
+}
+
+.back-top:active {
+  border-style: inset;
+}
+
+
+/* =========================================================
+   最下部
+========================================================= */
+
+.end-message {
+  margin: 28px 0 10px;
+
+  color: #a33657;
+  text-align: center;
+
+  font-size: 16px;
+  font-weight: bold;
+}
+
+
+/* =========================================================
+   スマホ
+========================================================= */
+
+@media (max-width: 700px) {
+
+  body {
+    font-size: 12px;
+  }
+
+  .wrapper {
+    width: calc(100% - 14px);
+    margin: 10px auto 25px;
+  }
+
+  .site-title {
+    font-size: 23px;
+  }
+
+  .gallery {
+    padding: 16px 12px 25px;
+  }
+
+  .section-title {
+    font-size: 15px;
+  }
+
+  .nav a {
+    min-width: 68px;
+    padding: 5px 6px;
+    font-size: 10px;
+  }
+
+  .card {
+    max-width: 100%;
+    padding: 8px;
+  }
+
+  .card-image-wrapper {
+    padding: 5px;
+  }
+
+  .card-image-wrapper img {
+    max-width: 100%;
+    max-height: 430px;
+  }
+
+}
+
+
+/* =========================================================
+   さらに小さい画面
+========================================================= */
+
+@media (max-width: 430px) {
+
+  .site-title {
+    font-size: 19px;
+    letter-spacing: 1px;
+  }
+
+  .gallery {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .card-image-wrapper img {
+    max-height: 350px;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="wrapper">
+
+  <!-- =========================
+       ヘッダー
+  ========================== -->
+
+  <header>
+
+    <div class="header-star">
+      ★ ☆ ★
+    </div>
+
+    <h1 class="site-title">
+      幼少期の平成的服装ギャラリー
+    </h1>
+
+    <div class="site-subtitle">
+      ★ Since 2003 ★　ようこそお越しくださいました♪
+    </div>
+
+    <div class="header-star">
+      ☆ ★ ☆
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+       MARQUEE
+  ========================== -->
+
+  <div class="marquee">
+    <div class="marquee-inner">
+      ★☆★ ようこそ！昔の写真を展示しています ★☆★
+     　キリ番を踏んだ方はぜひご報告ください♪　
+     　このサイトはリンクフリーです ★☆★
+    </div>
+  </div>
+
+
+  <!-- =========================
+       ナビ
+  ========================== -->
+
+  <nav class="nav">
+
+    <a href="index.php">HOME</a>
+
+    <a href="#">PROFILE</a>
+
+    <a href="#">DIARY</a>
+
+    <a href="#">BBS</a>
+
+    <a href="#">LINK</a>
+
+    <a href="gallery.html">GALLERY</a>
+
+  </nav>
+
+
+  <!-- =========================
+       メイン
+  ========================== -->
+
+  <main class="gallery">
+
+    <h1 class="section-title">
+      ★ 幼少期の平成的服装ギャラリーです ★
+    </h1>
+
+    <div class="section-subtitle">
+      ～ 2003年から2010年までの記録 ～<br>
+      <span class="blink">NEW!!</span>
+      写真を追加しました♪
+    </div>
+
+
+    <!-- =========================
+         ギャラリー
+    ========================== -->
+
+    <div class="gallery-grid">
+
+
+      <!-- 2003 -->
+
+      <section class="card">
+
+        <span class="card-year-label">
+          2003
+        </span>
+
+        <div class="card-image-wrapper">
+
+          <img
+            src="h/20031124.jpg"
+            alt="2003年11月の写真"
+          >
+
+        </div>
+
+        <div class="card-content">
+
+          <h2 class="card-title">
+            2003/11
+          </h2>
+
+        </div>
+
+      </section>
+
+
+      <!-- 2004 -->
+
+      <section class="card">
+
+        <span class="card-year-label">
+          2004
+        </span>
+
+        <div class="card-image-wrapper">
+
+          <img
+            src="h/200407.jpg"
+            alt="2004年7月の写真"
+          >
+
+        </div>
+
+        <div class="card-content">
+
+          <h2 class="card-title">
+            2004/07
+          </h2>
+
+          <p class="card-text">
+            。
+          </p>
+
+        </div>
+
+      </section>
+
+
+      <!-- 2005 -->
+
+      <section class="card">
+
+        <span class="card-year-label">
+          2005
+        </span>
+
+        <div class="card-image-wrapper">
+
+          <img
+            src="h/20051224.jpg"
+            alt="2005年12月の写真"
+          >
+
+        </div>
+
+        <div class="card-content">
+
+          <h2 class="card-title">
+            2005/12
+          </h2>
+
+        </div>
+
+      </section>
+
+
+      <!-- 2006/01 -->
+
+      <section class="card">
+
+        <span class="card-year-label">
+          2006
+        </span>
+
+        <div class="card-image-wrapper">
+
+          <img
+            src="h/20060101.jpg"
+            alt="2006年1月の写真"
+          >
+
+        </div>
+
+        <div class="card-content">
+
+          <h2 class="card-title">
+            2006/01
+          </h2>
+
+        </div>
+
+      </section>
+
+
+      <!-- 2006/04 -->
+
+      <section class="card">
+
+        <div class="card-image-wrapper">
+
+          <img
+            src="h/20060401.jpg"
+            alt="2006年4月の写真"
+          >
+
+        </div>
+
+        <div class="card-content">
+
+          <h2 class="card-title">
+            2006/04
+          </h2>
+
+        </div>
+
+      </section>
+
+
+      <section class="card">
+
+        <div class="card-image-wrapper">
+
+          <img
+            src="h/20060416.jpg"
+            alt="2006年4月の写真"
+          >
+
+        </div>
+
+        <div class="card-content">
+
+          <h2 class="card-title">
+            2006/04
+          </h2>
+
+        </div>
+
+      </section>
+
+
+      <!-- 2006/07 -->
+
+      <section class="card">
+
+        <div class="card-image-wrapper">
+
+          <img
+            src="h/200607.JPG"
+            alt="2006年7月の写真"
+          >
+
+        </div>
+
+        <div class="card-content">
+
+          <h2 class="card-title">
+            2006/07
+          </h2>
+
+        </div>
+
+      </section>
+
+
+      <!-- 2006/11 -->
+
+      <section class="card">
+
+        <div class="card-image-wrapper">
+
+          <img
+            src="h/20061125.jpg"
+            alt="2006年11月の写真"
+          >
+
+        </div>
+
+        <div class="card-content">
+
+          <h2 class="card-title">
+            2006/11
+          </h2>
+
+          <p class="card-text">
+            (旧)マルナカの袋。
+          </p>
+
+        </div>
+
+      </section>
+
+
+      <!-- 2006/12 -->
+
+      <section class="card">
+
+        <div class="card-image-wrapper">
+
+          <img
+            src="h/200612.JPG"
+            alt="2006年12月の写真"
+          >
+
+        </div>
+
+        <div class="card-content">
+
+          <h2 class="card-title">
+            2006/12
+          </h2>
+
+        </div>
+
+      </section>
+
+
+      <!-- 2007/03 -->
+
+      <section class="card">
+
+        <span class="card-year-label">
+          2007
+        </span>
+
+        <div class="card-image-wrapper">
+
+          <img
+            src="h/200703.jpg"
+            alt="2007年3月の写真"
+          >
+
+        </div>
+
+        <div class="card-content">
+
+          <h2 class="card-title">
+            2007/03
+          </h2>
+
+        </div>
+
+      </section>
+
+
+      <section class="card">
+
+        <span class="card-year-label">
+          2007
+        </span>
+
+        <div class="card-image-wrapper">
+
+          <img
+            src="h/200703_2.JPG"
+            alt="2007年3月の写真"
+          >
+
+        </div>
+
+        <div class="card-content">
+
+          <h2 class="card-title">
+            2007/03
+          </h2>
+
+        </div>
+
+      </section>
+
+
+      <!-- 2007/04 -->
+
+      <section class="card">
+
+        <div class="card-image-wrapper">
+
+          <img
+            src="h/20070405.jpg"
+            alt="2007年4月の写真"
+          >
+
+        </div>
+
+        <div class="card-content">
+
+          <h2 class="card-title">
+            2007/04
+          </h2>
+
+        </div>
+
+      </section>
+
+
+      <!-- 2007/06 -->
+
+      <section class="card">
+
+        <div class="card-image-wrapper">
+
+          <img
+            src="h/200706.JPG"
+            alt="2007年6月の写真"
+          >
+
+        </div>
+
+        <div class="card-content">
+
+          <h2 class="card-title">
+            2007/06
+          </h2>
+
+        </div>
+
+      </section>
+
+
+      <section class="card">
+
+        <div class="card-image-wrapper">
+
+          <img
+            src="h/20070602.jpg"
+            alt="2007年6月の写真"
+          >
+
+        </div>
+
+        <div class="card-content">
+
+          <h2 class="card-title">
+            2007/06
+          </h2>
+
+        </div>
+
+      </section>
+
+
+      <!-- 2007/08 -->
+
+      <section class="card">
+
+        <div class="card-image-wrapper">
+
+          <img
+            src="h/20070801.jpg"
+            alt="2007年8月の写真"
+          >
+
+        </div>
+
+        <div class="card-content">
+
+          <h2 class="card-title">
+            2007/08
+          </h2>
+
+        </div>
+
+      </section>
+
+
+      <section class="card">
+
+        <div class="card-image-wrapper">
+
+          <img
+            src="h/20070820.jpg"
+            alt="2007年8月の写真"
+          >
+
+        </div>
+
+        <div class="card-content">
+
+          <h2 class="card-title">
+            2007/08
+          </h2>
+
+        </div>
+
+      </section>
+
+
+      <!-- 2007/09 -->
+
+      <section class="card">
+
+        <div class="card-image-wrapper">
+
+          <img
+            src="h/200709_2.jpg"
+            alt="2007年9月の写真"
+          >
+
+        </div>
+
+        <div class="card-content">
+
+          <h2 class="card-title">
+            2007/09
+          </h2>
+
+        </div>
+
+      </section>
+
+
+      <!-- 2008 -->
+
+      <section class="card">
+
+        <span class="card-year-label">
+          2008
+        </span>
+
+        <div class="card-image-wrapper">
+
+          <img
+            src="h/20080103.jpg"
+            alt="2008年1月の写真"
+          >
+
+        </div>
+
+        <div class="card-content">
+
+          <h2 class="card-title">
+            2008/01
+          </h2>
+
+        </div>
+
+      </section>
+
+
+      <section class="card">
+
+        <div class="card-image-wrapper">
+
+          <img
+            src="h/200804.jpg"
+            alt="2008年4月の写真"
+          >
+
+        </div>
+
+        <div class="card-content">
+
+          <h2 class="card-title">
+            2008/04
+          </h2>
+
+        </div>
+
+      </section>
+
+
+      <section class="card">
+
+        <div class="card-image-wrapper">
+
+          <img
+            src="h/200804_2.jpg"
+            alt="2008年8月の写真"
+          >
+
+        </div>
+
+        <div class="card-content">
+
+          <h2 class="card-title">
+            2008/08
+          </h2>
+
+        </div>
+
+      </section>
+
+
+      <!-- 2009 -->
+
+      <section class="card">
+
+        <span class="card-year-label">
+          2009
+        </span>
+
+        <div class="card-image-wrapper">
+
+          <img
+            src="h/20090221.jpg"
+            alt="2009年2月の写真"
+          >
+
+        </div>
+
+        <div class="card-content">
+
+          <h2 class="card-title">
+            2009/02
+          </h2>
+
+        </div>
+
+      </section>
+
+
+      <section class="card">
+
+        <div class="card-image-wrapper">
+
+          <img
+            src="h/20090321.jpg"
+            alt="2009年3月の写真"
+          >
+
+        </div>
+
+        <div class="card-content">
+
+          <h2 class="card-title">
+            2009/03
+          </h2>
+
+        </div>
+
+      </section>
+
+
+      <section class="card">
+
+        <div class="card-image-wrapper">
+
+          <img
+            src="h/20090505.jpg"
+            alt="2009年5月の写真"
+          >
+
+        </div>
+
+        <div class="card-content">
+
+          <h2 class="card-title">
+            2009/05
+          </h2>
+
+        </div>
+
+      </section>
+
+
+      <section class="card">
+
+        <div class="card-image-wrapper">
+
+          <img
+            src="h/20090531.jpg"
+            alt="2009年5月の写真"
+          >
+
+        </div>
+
+        <div class="card-content">
+
+          <h2 class="card-title">
+            2009/05
+          </h2>
+
+          <p class="card-text">
+            眉毛の角度まで同じ・・・。
+          </p>
+
+        </div>
+
+      </section>
+
+
+      <section class="card">
+
+        <div class="card-image-wrapper">
+
+          <img
+            src="h/20091011.jpg"
+            alt="2009年10月の写真"
+          >
+
+        </div>
+
+        <div class="card-content">
+
+          <h2 class="card-title">
+            2009/10
+          </h2>
+
+        </div>
+
+      </section>
+
+
+      <section class="card">
+
+        <div class="card-image-wrapper">
+
+          <img
+            src="h/20091223.jpg"
+            alt="2009年12月の写真"
+          >
+
+        </div>
+
+        <div class="card-content">
+
+          <h2 class="card-title">
+            2009/12
+          </h2>
+
+        </div>
+
+      </section>
+
+
+      <section class="card">
+
+        <div class="card-image-wrapper">
+
+          <img
+            src="h/20091225_2.jpg"
+            alt="2009年12月の写真"
+          >
+
+        </div>
+
+        <div class="card-content">
+
+          <h2 class="card-title">
+            2009/12
+          </h2>
+
+        </div>
+
+      </section>
+
+
+      <!-- 2010 -->
+
+      <section class="card">
+
+        <span class="card-year-label">
+          2010
+        </span>
+
+        <div class="card-image-wrapper">
+
+          <img
+            src="h/20100117.jpg"
+            alt="2010年1月の写真"
+          >
+
+        </div>
+
+        <div class="card-content">
+
+          <h2 class="card-title">
+            2010/01
+          </h2>
+
+        </div>
+
+      </section>
+
+
+      <section class="card">
+
+        <div class="card-image-wrapper">
+
+          <img
+            src="h/20100515.jpg"
+            alt="2010年5月の写真"
+          >
+
+        </div>
+
+        <div class="card-content">
+
+          <h2 class="card-title">
+            2010/05
+          </h2>
+
+        </div>
+
+      </section>
+
+
+    </div>
+
+
+    <!-- =========================
+         古の注意書き
+    ========================== -->
+
+    <div class="old-notice">
+
+      <span class="blink">★ IMPORTANT ★</span><br>
+
+      このサイトは
+      <strong>リンクフリー</strong>です♪<br>
+
+      無断転載はご遠慮ください。<br>
+
+      相互リンクも募集中です☆<br>
+
+      <span class="blink">キリ番GETした方はBBSへ報告お願いします！</span>
+
+    </div>
+
+
+    <!-- =========================
+         カウンター
+    ========================== -->
+
+    <div class="counter-area">
+
+      <div class="counter-title">
+        あなたは
+      </div>
+
+      <div class="counter-number">
+        012345
+      </div>
+
+      <div class="counter-title">
+        人目のお客様です☆
+      </div>
+
+      <div class="counter-message">
+        ★ 12345 HIT 踏んだ方おめでとうございます ★
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         更新履歴
+    ========================== -->
+
+    <section class="history">
+
+      <div class="history-title">
+        ★ 更新履歴 ★
+      </div>
+
+      <div class="history-body">
+
+        <div>
+          <span class="history-date">2026/09/02</span>
+          　ギャラリー更新しました！
+          <span class="blink">NEW!!</span>
+        </div>
+
+        <div>
+          <span class="history-date">2009/12/25</span>
+          　写真追加
+        </div>
+
+        <div>
+          <span class="history-date">2008/04/01</span>
+          　サイト改装
+        </div>
+
+        <div>
+          <span class="history-date">2003/??/??</span>
+          　サイトOPEN☆
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         管理人メモ
+    ========================== -->
+
+    <div class="memo">
+
+      <div class="memo-title">
+        管理人より★
+      </div>
+
+      昔の写真を整理していたら色々出てきたので、
+      少しずつ載せていきます。<br>
+
+      「この頃こんな服着てたな～」という感じで
+      見てもらえたら嬉しいです♪<br>
+
+      また写真が見つかったら更新します！
+
+    </div>
+
+
+    <div class="end-message">
+      ☆★☆ おわり ☆★☆
+    </div>
+
+
+    <!-- =========================
+         フッター
+    ========================== -->
+
+    <div class="footer-info">
+
+      <strong>LINK FREE</strong>　｜　
+      <strong>SINCE 2003</strong>
+
+      <br>
+
+      このホームページは個人が趣味で運営しています。
+
+      <div class="footer-links">
+
+        [ <a href="index.php">トップページへ戻る</a> ]
+
+        　
+
+        [ <a href="gallery.html">ギャラリーへ戻る</a> ]
+
+      </div>
+
+      <div class="footer-small">
+
+        Best viewed with Internet Explorer 6.0<br>
+        © MY HOMEPAGE ALL RIGHTS RESERVED.
+
+      </div>
+
+    </div>
+
+
+    <a href="#" class="back-top">
+      ▲ TOPへ戻る
+    </a>
+
+
+  </main>
+
+</div>
+
+
+<!-- =========================================================
+     写真をスクロールでふわっと表示
+========================================================= -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const cards = document.querySelectorAll(".card");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+
+      entries.forEach((entry) => {
+
+        if (entry.isIntersecting) {
+
+          entry.target.classList.add("visible");
+
+          observer.unobserve(entry.target);
+
+        }
+
+      });
+
+    },
+    {
+      threshold: 0.15
+    }
+  );
+
+
+  cards.forEach((card) => {
+
+    observer.observe(card);
+
+  });
+
+});
+
+</script>
+
+
+</body>
+</html>

@@ -61,10 +61,10 @@ require_once 'header.php';
 <h3>誰でもどうぞ！たくさんの投稿をお待ちしております*^^*</h3>
 
 <form id="form" method="POST">
-  お名前は？
+  お名前は？<br>
   <input name="name" placeholder="(匿名でも本名でも)"><br>
 
-どの時代の友人ですか？
+どの時代の友人ですか？<br>
   <select name="type">
     <option value ="none">-</option>
     <option value ="kinder">幼稚園</option>
@@ -78,7 +78,8 @@ require_once 'header.php';
   </select>
 
 <br>
-  <textarea name="msg" placeholder="メッセージを何でもどうぞ　文字数制限はありません"></textarea><br>
+メッセージをどうぞ <br>
+<textarea name="msg" placeholder="なんでもどうぞ。文字数制限はありません"></textarea><br>
 ※改行が入ると、メッセージが反転して表示されてしまうことがあります<br>
   <button type="button" onclick="openModal()">送信</button>
 </form>

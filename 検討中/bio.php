@@ -33,6 +33,15 @@ EOT;
 }
 ?>
 
+
+<h1>バイオグラフィー</h1>
+    工事中です
+<br>
+----------------------------------
+<br>
+バイオグラフィーに掲載し甲斐がありそうな　私に関するエピソードを募集しています。
+<br>
+投稿された内容は、審議された後に掲載されます。
 <form id="form" method="POST">
   おなまえ：<input name="name" placeholder=""><br>
   内容　　：<textarea name="msg" placeholder="だいたいいつ頃かが分かると有難いです。"></textarea><br>
@@ -41,13 +50,10 @@ EOT;
   <input type="checkbox" name="visible[]" value="クレジット"> クレジットに名前を載せてほしい<br>
 
   <button type="submit">送信</button>
+<br>
+※確認画面は表示されません。
 </form>
 
-
-
-<h1>バイオグラフィー</h1>
-    工事中です
-<br>
 
     <br><br>
     ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆
@@ -67,29 +73,7 @@ EOT;
 <br><br>
 ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆
 <br>
-バイオグラフィーに掲載し甲斐がありそうな　私に関するエピソードを募集しています。
-<br>
-投稿された内容は、審議された後に掲載されます。
 
-<br>
-<form id="name" method="POST">
-おなまえ：
-<input name="name" placeholder=""><br>
-内容　　：
-  <textarea name="msg" placeholder="だいたいいつ頃かが分かると有難いです。"></textarea><br>
-
-  <!-- <br> -->
-  <!-- 下の画面に表示しても良い場合はチェック<br> -->
-
-  	<input type="checkbox" name="visible[]" value="表示"> 下の画面（審議中の内容）に表示してもよい
-    <br>
-    <input type="checkbox" name="visible[]" value="クレジット"> クレジットに名前を載せてほしい
-    <br>
-  <button type="button" onclick="submitForm()">送信</button>
-</form>
-※確認画面は表示されません。
-
-<br><br>
 
     チェックが付けられた内容は、ここから下に表示されます
     （画面へ表示するまでに、時差があります。）
@@ -101,9 +85,3 @@ EOT;
     --------------------------------------------
     <br><br>
     © 2026 Kameyama Tamao All Rights Reserved.
-
-    <script>
-    function submitForm() {
-    document.getElementById("form").submit();
-    }
-    </script>
