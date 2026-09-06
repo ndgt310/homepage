@@ -503,12 +503,17 @@
 
     display: grid;
 
-    grid-template-columns: repeat(minmax(0, 1fr));
-
+    /* grid-template-columns: repeat(minmax(0, 1fr)); */
+    grid-template-columns: repeat(2, 1fr);
     gap: 42px 18px;
     align-items: center;
     align-items: start;
-    } */
+
+    }
+
+    .section-title {
+  grid-column: 1 / -1;
+  }
 
 
     /* ==================================================
@@ -519,7 +524,7 @@
 
       position: relative;
 
-      width: 60%;
+      width: 130%;
 
       opacity: 0;
 
@@ -545,7 +550,7 @@
 
       display: block;
 
-      width: 40%;
+      width: 80%;
 
       height: auto;
 
@@ -598,8 +603,8 @@
     /* ==================================================
        NEW / 年代ごとの飾り
        ================================================== */
-
-    .year-decoration {
+/* 削除予定 */
+    /* .year-decoration {
 
       margin-top: 5px;
 
@@ -610,7 +615,7 @@
       text-align: right;
 
       letter-spacing: 1px;
-    }
+    } */
 
 
     /* ==================================================
@@ -843,9 +848,9 @@
 
       .intro {
 
-        margin-left: 120px;
+        margin-left: 12px;
 
-        margin-right: 120px;
+        margin-right: 12px;
       }
 
 
@@ -860,12 +865,12 @@
 
       /* スマホでは1列 */
 
-      .gallery-grid {
+      /* .gallery-grid {
 
         grid-template-columns: 1fr;
 
         gap: 38px;
-      }
+      } */
 
 
       .section-title {
@@ -910,10 +915,6 @@
 
       <div class="header-sub">
         平成的服装ギャラリーです
-      </div>
-
-      <div class="since">
-        Since 2003　
       </div>
 
     </header>
@@ -963,7 +964,7 @@
     <section class="intro">
 
       <div class="intro-title">
-        ---ようこそ---
+        --------------------------ようこそ--------------------------
       </div>
 
       <div class="intro-body">
@@ -973,7 +974,7 @@
 
         <!-- <span class="blink">         -->
         <strong>2003年～2010年ごろ</strong>
-        の写真を掲載中～<br>
+        の写真を掲載しています<br>
     <!-- </span> -->
 
       </div>
@@ -1032,24 +1033,6 @@
         </div>
 
       </div>
-
-
-      <div class="info-box">
-
-        <div class="info-title">
-          ○○○○
-        </div>
-
-        <div class="info-body">
-
-          このスペースは<br>
-          現在検討中<br>
-          ☆
-
-        </div>
-
-      </div>
-
 
     </section>
 
@@ -1147,10 +1130,6 @@
             <h2 class="card-title">
               2006/01
             </h2>
-
-            <div class="year-decoration">
-              ☆ HAPPY NEW YEAR ☆
-            </div>
 
           </div>
 
@@ -1289,8 +1268,6 @@
 
 
         <section class="card">
-
-          <span class="card-year-label">2007</span>
 
           <div class="card-image-wrapper">
 
@@ -1514,8 +1491,6 @@
     <h2 class="section-title">2009</h2>
         <section class="card">
 
-          <span class="card-year-label">2009</span>
-
           <div class="card-image-wrapper">
 
             <img
@@ -1597,9 +1572,6 @@
               2009/05
             </h2>
 
-            <div class="year-decoration">
-              眉毛の角度・・・。
-            </div>
 
           </div>
 
@@ -1765,7 +1737,7 @@
     <footer class="footer">
 
       <div>
-        <a class="footer-button"href="gallery5.html">
+        <a class="footer-button"href="gallery2.html">
         ページの一番上へ戻る
         </a>
       </div>
