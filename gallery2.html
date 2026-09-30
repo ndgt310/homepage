@@ -1704,12 +1704,9 @@
         ありがとうございました<br>
 
         </div>
-
       </div>
 
-
     </main>
-
 
     <!-- ==========================================
          NOTICE
@@ -1723,7 +1720,6 @@
 
     </div>
 
-
     <!-- ==========================================
          FOOTER
          ========================================== -->
@@ -1736,7 +1732,6 @@
         </a>
       </div>
 
-
       <!-- <div class="link-free"> -->
             <a class="footer-button"href="index.php">
         TOPページへ戻る
@@ -1746,8 +1741,6 @@
         GALLERYへ戻る
         </a>　　　　　　　　　　　　　　　　　　　　　　　
       <!-- </div> -->
-
-
       <div class="footer-small">
 
     © 2026 Kameyama Tamao All Rights Reserved.<br>
@@ -1755,10 +1748,7 @@
       </div>
 
     </footer>
-
-
   </div>
-
 
   <!-- ==========================================
        JavaScript
@@ -1786,24 +1776,20 @@
           });
 
         },
-
         {
           threshold: 0.05
         }
 
       );
-
-
       cards.forEach(function (card) {
 
-        observer.observe(card);
-
+      observer.observe(card);
       });
 
     });
-
+    // ページが読み込まれた瞬間にアドレスバーのファイル名を消す
+    window.history.replaceState(null, null, './');
   </script>
-
 
 </body>
 </html>
