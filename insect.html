@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>昆虫標本</title>
+    <style>
+        /* 全体のスタイル設定 */
+        body {
+            background-color: #000000; /* 背景を黒に設定 */
+            color: #723030;            /* 文字を白に設定 */
+            font-family: "Hiragino Mincho ProN", "ヒラギノ明朝 ProN", "MS Mincho", "serif";
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            
+        }
+
+        /* ギャラリーのタイトル */
+        h1 {
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+        }
+ /* ギャラリーのコンテナ（縦1列に設定） */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: 1fr; /* 1行に1枚（1列）にする設定 */
+            gap: 40px;                  /* 写真と写真の間の余白 */
+            max-width: 600px;           /* 写真が表示される最大の横幅（お好みで調整してください） */
+            width: 100%;
+            padding: 30px;
+        }
+
+        /* 各画像アイテムの枠組み */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.05);
+        }
+
+        /* 画像のスタイル */
+        .gallery-item img {
+            width: 100%;
+            height: auto;               /* 画像の比率を崩さずに表示 */
+            display: block;
+        }
+
+        /* 画像の下に表示するテキスト（キャプション） */
+        .caption {
+            padding: 15px;
+            background-color: #111111; /* 少し明るい黒でメリハリをつける */
+            font-size: 16px;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>昆虫標本の作り方</h1>
+※ここから下は虫が写ります！<br><br><br><br>
+
+　↓↓↓虫を見たくない人はクリック↓↓↓
+<h1><nav>
+    <!-- 1. まず外側に丸いテーブルを置く（borderは0にします） -->
+    <table bgcolor="#ffffff" width="300" height="300" cellpadding="0" cellspacing="0" border="0" style="border-radius: 50%; width: 300px; height: 300px;">
+        <tr>
+            <td align="center" valign="middle">
+                <!-- 2. テーブルの内側、文字の直前に a タグと、文字色を黒にする font タグを置く -->
+                <a href="detail.php" class="btn" style="text-decoration: none;">
+                    <font color="#000000"><b>虫は見たくないので戻る</b></font>
+                </a>
+            </td>
+        </tr>
+    </table>
+</nav></h1>
+
+
+
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<div class="gallery-container">
+
+        <div class="gallery-item">
+            <img src="insect/m_1.jpg" alt="1">
+            <div class="caption">まず、昆虫を採集します</div>
+        </div>
+<br><br><br>
+        <div class="gallery-item">
+            <img src="insect/m_2.jpg" alt="作品2">
+            <div class="caption">採集したら、すぐに薬品（酢酸エチル）で締めます<br>ない場合は、なぜか酢酸エチルが成分に含まれているCANMAKEのネイルリムーバーでOK!<br><a href="https://www.canmake.com/item/detail/quick-and-easy-remover/" target="_blank">https://www.canmake.com/item/detail/quick-and-easy-remover</a></div>
+        </div>
+<br><br><br>
+        <div class="gallery-item">
+            <img src="insect/m_3.jpg" alt="作品3">
+            <div class="caption">ピンで脚を固定します</div>
+        </div>
+<br><br><br>
+        <div class="gallery-item">
+            <img src="insect/m_4.jpg" alt="作品4">
+            <div class="caption">蝶々の場合は、羽根を広げた状態で紙を重ね、羽根の周りをピンで固定します</div>
+        </div>
+<br><br><br>
+        <div class="gallery-item">
+            <img src="insect/m_5.jpg" alt="作品5">
+            <div class="caption">ピンで固定が完了した状態です</div>
+        </div>
+        この状態で2週間乾燥させたらできあがり
+<br><br><br>
+        <div class="gallery-item">
+            <img src="insect/6.JPG" alt="作品6">
+            <div class="caption">土器川生物公園での採集</div>
+        </div>
+<br><br><br>
+                <div class="gallery-item">
+            <img src="insect/7.jpg" alt="作品5">
+            <div class="caption">土器川生物公園で採集したアゲハ</div>
+        </div>
+    </div>
+
+<br><br><br>
+
+</body>
+</html>
