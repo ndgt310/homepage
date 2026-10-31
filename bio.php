@@ -64,25 +64,25 @@ EOT;
 <br><br><br>
 バイオグラフィーに掲載し甲斐がありそうな　エピソードを募集。
 <br>
-●投稿された内容は、審議された後に掲載されます。<br>
+<!-- ●投稿された内容は、審議された後に掲載されます。<br> -->
 <!-- ●おなまえ　は、掲載されます。<br>　名前を掲載されたくない場合は、空欄でok。<br><br> -->
 <form id="form" method="POST">
   おなまえ：<input name="name" placeholder="空欄可"><br>
   内容　　：<textarea name="msg" placeholder="だいたいいつ頃かが分かると有難いです。"></textarea><br>
 
-  <input type="checkbox" name="visible[]" value="クレジット"> クレジットにも名前を載せてほしい<br>
+  <!-- <input type="checkbox" name="visible[]" value="クレジット"> クレジットにも名前を載せてほしい<br> -->
 	<br>
   <button type="submit">送信</button>
 <br>
-<span style="color:red;">※確認画面は表示されません。</span> 
+<!-- <span style="color:red;">※確認画面は表示されません。</span>  -->
 </form>
 
 
     <br><br>
 
 
-    審議中の場合は、ここから下に表示されます
-    （時差あり）
+    <!-- 審議中の場合は、ここから下に表示されます -->
+    <!-- （時差あり） -->
     <br><br>
     ---------------審議中の内容---------------
     <br><br><br><br>
